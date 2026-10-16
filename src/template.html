@@ -1,0 +1,729 @@
+<title>Avance App Inversiones | Consubanco</title>
+<link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,__FAV64__">
+<link rel="apple-touch-icon" href="data:image/png;base64,__FAV180__">
+<style>
+__FONTS__
+/* Look and feel tomado del tablero ejecutivo de Grupo Consupago (Programa CAN):
+   azules claros, títulos con serifa, pestañas tipo píldora, bloques blancos con borde. */
+:root{
+  --navy:#1B355D; --navy-2:#2A4A7B; --sky:#7DACE3; --sky-2:#A9C8EC; --sky-3:#CFE1F6;
+  --mist:#E4EEFA; --ice:#F3F7FC; --line:#D3E2F4; --line-soft:#E8EFF8; --surface:#FFFFFF;
+  --ink:#1B2A44; --ink-2:#44546E; --ink-3:#5F6F87; --ember:#E75301; --brick:#983920; --leaf:#3F8A3A;
+  --c-done:#6FAA5F; --c-front:#4F86C6; --c-back:#1B355D;
+  --font-serif:"Merriweather",Georgia,"Times New Roman",serif;
+  --font-sans:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r-s:6px; --r-m:12px; --r-l:20px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font-sans);font-size:1rem;line-height:1.55;color:var(--ink);background:var(--ice);-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:var(--font-serif);color:var(--navy);line-height:1.3;margin:0 0 .5em;font-weight:700}
+h2{font-size:clamp(1.45rem,1.2rem + 1vw,1.95rem)} h3{font-size:1.2rem} h4{font-size:1.05rem}
+p{margin:0 0 .75em} ul,ol{margin:0}
+a{color:#1F5FA8;text-underline-offset:2px} a:hover{color:var(--navy)}
+button{font:inherit}
+:focus-visible{outline:3px solid #2F7FD6;outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem)}
+.meta{color:var(--ink-3);font-size:.9rem}
+.lead{color:var(--ink-2);max-width:72ch}
+
+/* Encabezado */
+.masthead{background:var(--mist);border-top:6px solid var(--navy)}
+.masthead__inner{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem 2rem;padding-top:1.1rem;padding-bottom:1rem}
+.brand{display:flex;align-items:center;gap:.5rem;margin:0 0 .15rem;font-weight:700;font-size:.95rem;color:var(--navy)}
+.brand__logo{display:block;height:30px;width:auto;background:#fff;padding:7px 12px;border-radius:8px;box-sizing:content-box;margin-bottom:.35rem}
+.brand__dot{width:.8rem;height:.8rem;border-radius:50%;border:3px solid var(--sky);position:relative}
+.brand__dot::after{content:"";position:absolute;right:-4px;top:-4px;width:.35rem;height:.35rem;border-radius:50%;background:var(--ember)}
+.masthead h1{font-size:clamp(1.35rem,1.1rem + 1vw,1.85rem);margin:0}
+.masthead__meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.9rem;color:var(--ink-2)}
+.masthead__meta p{margin:0;text-align:right;line-height:1.4}
+.btn{display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;border-radius:999px;padding:.5rem 1rem;font-weight:600;font-size:.9rem;border:1px solid var(--navy);background:var(--navy);color:#fff}
+.btn--ghost{background:transparent;color:var(--navy);border-color:var(--sky)}
+.btn--ghost:hover{background:var(--sky-3)}
+
+/* Pestañas */
+.tabs-wrap{position:sticky;top:0;z-index:30;background:rgba(228,238,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;padding:.55rem 0;scrollbar-width:thin}
+.tab{flex:0 0 auto;cursor:pointer;white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--navy);font-weight:600;font-size:.95rem;line-height:1.2;padding:.55rem .95rem;border-radius:999px;transition:background-color .15s ease}
+.tab:hover{background:var(--sky-3)}
+.tab[aria-selected="true"]{background:var(--sky);border-color:var(--sky)}
+
+/* Paneles y bloques */
+.panel{padding:1.75rem 0 3rem}
+.panel:focus{outline:none}
+.panel__head{margin-bottom:1.25rem}
+.panel__head p{color:var(--ink-2);max-width:75ch}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:clamp(1rem,2vw,1.5rem);margin-top:1.25rem}
+.block__head{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0 1.25rem;align-items:start}
+.link-btn{background:none;border:0;padding:.2rem 0;cursor:pointer;color:#1F5FA8;font-weight:600;font-size:.9rem;text-decoration:underline;text-underline-offset:3px}
+.link-btn:hover{color:var(--navy)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem 2.5rem;background:#DCEAF9;border-radius:var(--r-l);padding:clamp(1.25rem,3vw,2.25rem) clamp(1.25rem,3vw,2.5rem) 1.25rem}
+.hero__title{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.35rem);margin-bottom:.6rem}
+.hero__objective{font-family:var(--font-serif);font-size:clamp(1rem,.95rem + .3vw,1.15rem);line-height:1.75;max-width:64ch;color:var(--ink)}
+.hero__context{color:var(--ink-2);max-width:72ch;font-size:.95rem;margin:0}
+.hero__rail{grid-column:1 / -1}
+.countdown{display:flex;flex-direction:column;align-items:flex-end;text-align:right;min-width:11rem}
+.countdown__num{font-family:var(--font-serif);font-weight:700;color:var(--navy);font-size:clamp(3rem,2rem + 4vw,4.75rem);line-height:1;letter-spacing:-.02em}
+.countdown__txt{font-weight:600;color:var(--navy);margin-top:.35rem;max-width:12rem;line-height:1.3}
+.countdown__date{color:var(--ink-2);font-size:.9rem;margin-top:.2rem}
+
+/* Ruta de hitos */
+.rail{position:relative;height:10rem;margin-top:1.25rem}
+.rail__line{position:absolute;left:0;right:0;top:7.25rem;height:4px;background:#B7D0EE;border-radius:2px}
+.rail__fill{position:absolute;left:0;top:0;bottom:0;width:var(--hoy,0%);background:var(--navy);border-radius:2px;animation:rail-fill 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rail-fill{from{width:0}}
+.rail__today{position:absolute;top:7.25rem;left:var(--hoy,0%);width:0;height:0}
+.rail__today::before{content:"";position:absolute;left:-1px;top:-.55rem;width:2px;height:calc(1.1rem + 4px);background:var(--ember)}
+.rail__today span{position:absolute;top:1.05rem;left:0;transform:translateX(-50%);white-space:nowrap;font-size:.8rem;font-weight:700;color:#B63E0F}
+.rail__stops{list-style:none;margin:0;padding:0}
+.rail__stop{position:absolute;top:calc(7.25rem + 2px);left:var(--pos);width:0;height:0}
+.rail__dot{position:absolute;left:0;top:0;width:14px;height:14px;transform:translate(-50%,-50%);border-radius:50%;background:var(--surface);border:3px solid var(--navy)}
+.rail__stop.is-done .rail__dot{background:var(--navy)}
+.rail__stop.is-key .rail__dot{width:20px;height:20px;background:var(--ember);border-color:var(--ember)}
+.rail__label{position:absolute;left:0;transform:translateX(-50%);width:9.5rem;text-align:center;font-size:.8125rem;line-height:1.3;color:var(--ink-2)}
+.rail__label strong{display:block;color:var(--navy);font-size:.875rem}
+.rail__stop.tier-a .rail__label{bottom:1rem}
+.rail__stop.tier-b .rail__label{bottom:3.75rem}
+.rail__stop.tier-b::before{content:"";position:absolute;left:0;bottom:.6rem;width:1px;height:3rem;background:var(--sky)}
+.rail__stop.is-start .rail__label{transform:none;left:-.5rem;text-align:left}
+.rail__stop.is-end .rail__label{transform:none;left:auto;right:-.5rem;text-align:right}
+.rail__stop.is-key .rail__label strong{color:#B63E0F}
+
+/* Estados y etiquetas */
+.status{display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap;font-size:.8125rem;font-weight:600;line-height:1.2;padding:.28rem .6rem;border-radius:999px}
+.status::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:currentColor;flex:none}
+.status--hecho{background:#E2F0DF;color:#2C6526}
+.status--curso{background:#DCEAF9;color:#1D4F8C}
+.status--refinada{background:#EAF0FB;color:#2A4A7B}
+.status--porrefinar{background:#EEF1F5;color:#4F5E73}
+.status--backlog{background:#F4F1EA;color:#6B5B3E}
+.status--pronto{background:#FFEFC7;color:#734A00}
+.tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.tag::before{content:"";display:inline-block;flex:none;width:.6rem;height:.6rem;border-radius:2px;background:var(--c,var(--sky))}
+
+/* Puntos de atención */
+.alerts{list-style:none;padding:0}
+.alerts li{padding:.85rem 0;border-top:1px solid var(--line-soft)}
+.alerts li:first-child{border-top:0;padding-top:.25rem}
+.alert__head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+.alert__title{font-weight:700;color:var(--navy);margin:0 0 .2rem}
+.alert__text{margin:0;color:var(--ink-2);font-size:.95rem}
+
+/* Resumen */
+.res-summary{display:grid;grid-template-columns:auto 1fr;gap:.5rem 2rem;align-items:center;margin-bottom:.75rem}
+.res-total{font-family:var(--font-serif);font-weight:700;font-size:3rem;line-height:1;color:var(--navy)}
+.res-total small{display:block;font-family:var(--font-sans);font-size:.9rem;font-weight:600;color:var(--ink-2);margin-top:.3rem}
+.stack{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--mist)}
+.stack span{display:block;height:100%}
+.res-legend,.legend{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-size:.875rem;color:var(--ink-2);margin-top:.5rem}
+.res-legend li,.legend li{display:inline-flex;align-items:center;gap:.4rem}
+.sw{width:1.1rem;height:.65rem;border-radius:3px;display:inline-block}
+.sw--ms{width:.65rem;height:.65rem;transform:rotate(45deg);border-radius:1px}
+.sw--today{width:2px;height:.95rem;border-radius:0;background:var(--ember)}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem 1.25rem;margin:1rem 0 .25rem}
+.figure__val{display:block;font-family:var(--font-serif);font-weight:700;font-size:1.5rem;color:var(--navy);line-height:1.2}
+.figure__txt{display:block;font-size:.875rem;color:var(--ink-2);line-height:1.4}
+.counts{list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem}
+.counts li{display:flex;align-items:baseline;gap:.4rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-s);padding:.45rem .8rem;font-size:.9rem;color:var(--ink-2)}
+.counts strong{font-family:var(--font-serif);font-size:1.15rem;color:var(--navy)}
+.res-note{margin-top:1rem;background:var(--ice);border:1px dashed var(--sky-2);border-radius:var(--r-s);padding:.75rem .9rem;font-size:.9rem;color:var(--ink-2)}
+.res-note strong{color:var(--navy)}
+.source{font-size:.8125rem;color:var(--ink-3);margin:1rem 0 0}
+
+/* Avance por épica */
+.progress-list{list-style:none;padding:0;margin-top:.5rem}
+.ep{position:relative;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) 4rem;gap:.25rem 1.25rem;align-items:center;padding:.7rem .75rem;margin:0 -.75rem;border-top:1px solid var(--line-soft);border-radius:var(--r-s);cursor:pointer}
+.ep:first-child{border-top:0}
+.ep:hover,.ep[aria-expanded="true"]{background:#F5F9FE}
+.ep__name{font-weight:600;font-size:.95rem;color:var(--ink);line-height:1.3}
+.ep__name small{display:block;font-weight:400;font-size:.8125rem;color:var(--ink-3)}
+.ep__val{text-align:right;font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.bar{height:10px;background:var(--mist);border-radius:999px;overflow:hidden;display:flex}
+.bar span{display:block;height:100%}
+.ep[aria-expanded="true"] .bar{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--sky)}
+.ep__det{display:none}
+.pop{display:none;position:absolute;left:var(--px,16rem);top:calc(100% - 2px);z-index:20;width:27rem;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--navy);border-radius:var(--r-m);padding:1rem 1.15rem;box-shadow:0 14px 34px rgba(28,53,94,.18);cursor:default}
+.pop::before{content:"";position:absolute;left:var(--ax,1.5rem);top:-11px;width:12px;height:12px;background:var(--navy);transform:rotate(45deg)}
+.ep.up .pop{top:auto;bottom:calc(100% - 2px);border-top:1px solid var(--line);border-bottom:5px solid var(--navy)}
+.ep.up .pop::before{top:auto;bottom:-11px}
+.ep[aria-expanded="true"] .pop{display:block}
+.pop__h{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-bottom:1px solid var(--line-soft);padding-bottom:.6rem}
+.pop__h h4{margin:0;font-size:1.1rem}
+.pop__h small{display:block;font-size:.85rem;color:var(--ink-3)}
+.pop__big{font-family:var(--font-serif);font-weight:700;font-size:2.4rem;line-height:1;color:var(--navy)}
+.pop__tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.8rem}
+.pop__tile{background:var(--ice);border:1px solid var(--line);border-radius:var(--r-s);padding:.55rem .65rem;border-top:3px solid var(--c)}
+.pop__tile b{display:block;font-family:var(--font-serif);font-size:1.35rem;color:var(--navy);line-height:1.15}
+.pop__tile b small{font-family:var(--font-sans);font-size:.85rem;font-weight:600;color:var(--ink-3)}
+.pop__tile span{font-size:.8125rem;color:var(--ink-2);font-weight:600}
+.pop__msg{margin:.8rem 0 0;font-size:.95rem;color:var(--ink);line-height:1.45}
+.pop__msg strong{color:var(--navy)}
+.pop__foot{margin:.5rem 0 0;font-size:.8125rem;color:var(--ink-3)}
+
+/* Entregado */
+.cols{display:grid;grid-template-columns:1.35fr 1fr;gap:1.25rem;align-items:start}
+.cols > section{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:clamp(1rem,2vw,1.5rem)}
+.acts{list-style:none;padding:0}
+.act{display:grid;grid-template-columns:3.6rem minmax(0,1fr) auto;gap:.9rem;align-items:start;padding:.9rem 0;border-top:1px solid var(--line-soft)}
+.acts > .act:first-child{border-top:0;padding-top:.25rem}
+.act__date{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--mist);border-radius:var(--r-s);padding:.35rem .2rem;color:var(--navy);line-height:1.1;text-align:center;min-height:3.4rem;border-left:3px solid var(--c,var(--sky))}
+.act__day{font-family:var(--font-serif);font-weight:700;font-size:1.25rem}
+.act__mon{font-size:.75rem;font-weight:600}
+.act__year{font-size:.6875rem;color:var(--ink-3)}
+.act__title{margin:0 0 .3rem;font-weight:600;color:var(--ink)}
+.act__meta{display:flex;flex-wrap:wrap;gap:.2rem 1rem;margin:0;font-size:.875rem;color:var(--ink-2)}
+.roles{list-style:none;padding:0;display:grid;gap:.75rem}
+.roles li{border:1px solid var(--line);border-radius:var(--r-s);padding:.8rem .9rem;background:var(--ice)}
+.roles .r-rol{display:block;font-size:.8125rem;font-weight:600;color:var(--ink-3)}
+.roles .r-name{display:block;font-family:var(--font-serif);font-weight:700;color:var(--navy);margin:.1rem 0 .4rem}
+.roles dl{margin:0;display:grid;grid-template-columns:5.2rem 1fr;gap:.25rem .6rem;font-size:.875rem}
+.roles dt{color:var(--ink-3);font-weight:600}
+.roles dd{margin:0;color:var(--ink)}
+
+/* Gantt */
+.gantt{--lab:19rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden}
+.gantt__scroll{overflow-x:auto}
+.gantt__inner{min-width:820px;position:relative}
+.g-row{display:grid;grid-template-columns:var(--lab) minmax(0,1fr) 16px;min-height:2.9rem;border-top:1px solid var(--line-soft)}
+.g-lab{position:sticky;left:0;z-index:3;background:var(--surface);padding:.45rem .8rem;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;font-size:.875rem;line-height:1.25}
+.g-name{font-weight:600;color:var(--ink)}
+.g-dates{font-size:.75rem;color:var(--ink-3);margin-top:.1rem}
+.g-track{position:relative}
+.g-grid{position:absolute;top:0;bottom:0;left:var(--lab);right:16px;pointer-events:none;z-index:1}
+.g-line{position:absolute;top:0;bottom:0;width:1px;background:var(--line-soft)}
+.g-today{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--ember);z-index:2}
+.g-row--head{background:var(--mist);border-top:0;min-height:4rem}
+.g-row--head .g-lab{background:var(--mist);font-weight:700;color:var(--navy)}
+.g-month{position:absolute;top:0;bottom:0;padding-top:.45rem;text-align:center;font-size:.75rem;font-weight:700;color:var(--navy);border-left:1px solid var(--line);white-space:nowrap;line-height:1.25}
+.g-month span{display:block;font-weight:400;color:var(--ink-3)}
+.g-month:first-child{border-left:0}
+.g-hoy{position:absolute;bottom:.25rem;transform:translateX(-50%);z-index:4;background:var(--ember);color:#fff;font-size:.6875rem;font-weight:700;padding:.05rem .45rem;border-radius:999px;white-space:nowrap}
+.g-row--group{background:#F5F9FE;min-height:2.4rem}
+.g-row--group .g-lab{background:#F5F9FE;flex-direction:row;align-items:center;justify-content:flex-start;gap:.5rem;font-family:var(--font-serif);font-weight:700;color:var(--navy);font-size:.95rem}
+.g-row--group .g-lab::before{content:"";width:.6rem;height:.6rem;border-radius:2px;background:var(--c);flex:none}
+.g-note{display:block;font-family:var(--font-sans);font-weight:400;font-size:.75rem;color:var(--ink-3)}
+.g-bar{position:absolute;top:50%;height:1rem;transform:translateY(-50%);z-index:3;border-radius:4px;min-width:4px}
+.g-ms{position:absolute;top:50%;width:.95rem;height:.95rem;z-index:3;transform:translate(-50%,-50%) rotate(45deg);border-radius:1px}
+.g-row.is-current .g-lab{box-shadow:inset 3px 0 0 var(--ember)}
+.st-futuro{background:var(--sky-2)} .st-curso{background:#4F86C6} .st-hecho{background:#7DB56F}
+.g-ms.is-key,.sw.ms-key{background:var(--ember)} .sw.ms-futuro{background:var(--navy)}
+.milestones{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem}
+.milestones li{background:var(--ice);border:1px solid var(--line);border-radius:var(--r-s);padding:.75rem .9rem}
+.milestones .ms-date{display:block;font-family:var(--font-serif);font-weight:700;color:var(--navy)}
+.milestones .ms-title{display:block;margin:.15rem 0 .2rem;color:var(--ink);font-weight:600}
+.milestones .ms-txt{display:block;font-size:.875rem;color:var(--ink-2)}
+.milestones li.is-key{border-color:#F3C9BC;background:#FDF3EE}
+.milestones li.is-key .ms-date{color:#B63E0F}
+
+/* Detalle por HU */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:.25rem 0 1rem;align-items:center}
+.chip-btn{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--navy);font-weight:600;font-size:.9rem;padding:.4rem .85rem;border-radius:999px}
+.chip-btn::before{content:"";width:.55rem;height:.55rem;border-radius:2px;background:var(--c,transparent)}
+.chip-btn:not([style])::before{display:none}
+.chip-btn:hover{border-color:var(--sky)}
+.chip-btn[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip-btn__n{font-weight:400;opacity:.8}
+select,input[type=search]{font:inherit;font-size:.95rem;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+input[type=search]{flex:1 1 14rem;min-width:0}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r-m);background:var(--surface);max-height:42rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.6rem .75rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+thead th{background:var(--mist);color:var(--navy);font-weight:700;white-space:nowrap;position:sticky;top:0;z-index:1}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#F7FAFE}
+td.code{white-space:nowrap;font-weight:700}
+td.muted{color:var(--ink-2)}
+.fb{display:flex;flex-direction:column;gap:.3rem;min-width:9.5rem}
+.fb .bar{height:7px}
+.fb small{font-size:.8125rem;color:var(--ink-2);white-space:nowrap}
+.fb small b{color:var(--navy)}
+
+.footer{border-top:1px solid var(--line);background:var(--mist);color:var(--ink-3);font-size:.85rem;padding:1.25rem 0 2rem}
+.footer p{margin:0;max-width:95ch}
+
+.status--dep{background:#FDE9E1;color:#983920}
+.status--programada{background:#EDF2F8;color:#3F4F68}
+/* Avance por proyecto */
+.proj{padding:.85rem 0 1rem;border-top:1px solid var(--line-soft)}
+.proj:first-of-type{border-top:0;padding-top:.25rem}
+.proj__head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+.proj__name{font-family:var(--font-serif);font-weight:700;color:var(--navy);font-size:1.05rem;line-height:1.3;margin:0}
+.proj__name small{display:block;font-family:var(--font-sans);font-weight:400;font-size:.85rem;color:var(--ink-3)}
+.proj__big{font-family:var(--font-serif);font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1}
+.proj > .bar{height:12px;margin:.5rem 0 .75rem}
+.comps{list-style:none;padding:0;display:grid;gap:.45rem}
+.comp{display:grid;grid-template-columns:minmax(0,1fr) 3.4rem 6.5rem 2.8rem;gap:.6rem;align-items:center;font-size:.875rem}
+.comp__n{color:var(--ink);font-weight:600;line-height:1.25}
+.comp__n small{display:block;font-weight:400;color:var(--ink-3);font-size:.78rem}
+.comp__w{color:var(--ink-3);font-size:.78rem;text-align:right;white-space:nowrap}
+.comp .bar{height:7px}
+.comp__v{text-align:right;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.comp__plan{grid-column:3 / -1;font-size:.8rem;color:var(--ink-3);text-align:right;white-space:nowrap}
+.comps__head{display:grid;grid-template-columns:minmax(0,1fr) 3.4rem 6.5rem 2.8rem;gap:.6rem;font-size:.72rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em}
+.comps__head span:not(:first-child){text-align:right}
+/* Habilitadores */
+.deps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:.75rem}
+.dep{background:var(--ice);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r-s);padding:.9rem 1rem;display:flex;flex-direction:column;gap:.4rem}
+.dep__top{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.dep__code{font-size:.75rem;font-weight:700;color:var(--ink-3);letter-spacing:.02em}
+.dep h4{margin:0;font-size:1.02rem}
+.dep__own{font-size:.85rem;color:var(--ink-2);margin:0}
+.dep__txt{margin:0;font-size:.9rem;color:var(--ink-2)}
+.dep__next{margin:auto 0 0;padding-top:.55rem;border-top:1px dashed var(--line);font-size:.875rem;color:var(--ink)}
+.dep__next b{color:var(--navy)}
+.dep .bar{height:7px}
+.dep__pct{font-family:var(--font-serif);font-weight:700;color:var(--navy)}
+/* Roadmap */
+.gantt--master{--lab:20rem}
+.gantt--master .gantt__inner{min-width:1150px}
+.g-row--head2{background:#F5F9FE;min-height:2.1rem}
+.g-row--head2 .g-lab{background:#F5F9FE;font-size:.78rem;color:var(--ink-3);font-weight:600}
+.g-row--head2 .g-month{padding-top:.5rem;font-weight:600;color:var(--ink-2)}
+.g-month.is-cur{background:#FDEDE5;color:#B63E0F}
+.g-pct{font-weight:700;color:var(--navy)}
+.g-row.is-dep .g-lab{box-shadow:inset 3px 0 0 var(--ember)}
+.g-bar.sg-prep{background:#D5DCE6}.g-bar.sg-done{background:#4F86C6}.g-bar.sg-cur{background:#EDB61F}.g-bar.sg-dep{background:#E75301}
+.g-bar.sg-risk{background:#F6C3AE}.g-bar.sg-proj{background:var(--sky-2)}.g-bar.sg-ok{background:#7DB56F}.g-bar.sg-ms{background:#F1D88A}
+.sw.sg-prep{background:#D5DCE6}.sw.sg-done{background:#4F86C6}.sw.sg-cur{background:#EDB61F}.sw.sg-dep{background:#E75301}.sw.sg-risk{background:#F6C3AE}.sw.sg-proj{background:var(--sky-2)}.sw.sg-ok{background:#7DB56F}.sw.sg-ms{background:#F1D88A}
+.g-ms.ms-navy{background:var(--navy)}
+.sp{font-size:.875rem}
+.sp td ul{margin:0;padding-left:1.05rem}
+.sp td:nth-child(2){white-space:nowrap}
+@media (min-width:1100px){#hitos-plan{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.sp td li{margin-bottom:.15rem}
+.sp th[scope=row]{min-width:9.5rem;color:var(--navy)}
+.sp th[scope=row] small{display:block;font-weight:400;color:var(--ink-3)}
+.sp tr.is-current td,.sp tr.is-current th{background:#FFF8F4}
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.5rem}
+.scope h4{display:flex;align-items:center;gap:.45rem;font-family:var(--font-sans);font-size:.95rem;margin:0 0 .4rem}
+.scope h4::before{content:"";width:.6rem;height:.6rem;border-radius:2px;background:var(--c)}
+.scope ul{padding-left:1.1rem;font-size:.9rem;color:var(--ink)}
+.scope li{margin-bottom:.3rem}
+.scope li::marker{color:var(--c)}
+.milestones li.is-done .ms-date::after{content:" · realizado";font-family:var(--font-sans);font-weight:600;font-size:.78rem;color:#2C6526}
+@media (max-width:960px){.split,.cols,.deps,.scope{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .masthead__meta p{text-align:left}
+  .hero{grid-template-columns:1fr}
+  .countdown{align-items:flex-start;text-align:left;order:-1;flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:.25rem .6rem}
+  .countdown__txt{max-width:none;margin-top:0}
+  .countdown__date{flex-basis:100%;margin-top:0}
+  .rail{height:auto;margin-top:.75rem}
+  .rail__line,.rail__today{display:none}
+  .rail__stops{border-left:3px solid #B7D0EE;margin-left:.5rem}
+  .rail__stop{position:relative;top:auto;left:auto;width:auto;height:auto;padding:0 0 .9rem 1.25rem}
+  .rail__stop::before{display:none}
+  .rail__dot{left:-1.5px;top:.65rem}
+  .rail__label,.rail__stop.is-start .rail__label,.rail__stop.is-end .rail__label{position:static;transform:none;width:auto;text-align:left}
+  .rail__label strong{display:inline;margin-right:.4rem}
+  .res-summary{grid-template-columns:1fr}
+  .figures{grid-template-columns:1fr 1fr}
+  .ep{grid-template-columns:minmax(0,1fr) 3.5rem}
+  .ep .bar{grid-column:1 / -1;grid-row:2}
+  .pop{left:.25rem!important;right:.25rem;width:auto}
+  .pop__tile b{font-size:1.15rem}
+  .act{grid-template-columns:3.3rem minmax(0,1fr)}
+  .act .status{grid-column:2;justify-self:start}
+  .gantt{--lab:12rem}
+  .gantt--master{--lab:13rem}
+  .comp,.comps__head{grid-template-columns:minmax(0,1fr) 5rem 2.6rem}
+  .comp__w,.comps__head span:nth-child(2){display:none}
+  .comp__plan{grid-column:2 / -1}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<style>
+@page{size:A4 landscape;margin:9mm}
+@media print{
+ body{background:#fff;font-size:10.5pt}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .tabs-wrap,#btn-imprimir,.filters,.no-print,.pop{display:none!important}
+ .panel[hidden]{display:block!important}
+ .panel{padding:.6rem 0 0}
+ .panel+.panel{break-before:page} .link-btn{display:none!important}
+ .masthead{border-top-width:3px}
+ .masthead__inner{padding-top:.5rem;padding-bottom:.5rem}
+ .hero{padding:1rem 1.5rem .5rem;break-inside:avoid}
+ .hero__title{font-size:1.5rem;margin-bottom:.3rem} .hero__objective{font-size:.98rem;line-height:1.55;margin-bottom:.4rem}
+ .countdown__num{font-size:3.2rem}
+ .rail{height:8.2rem;margin-top:.5rem} .rail__line,.rail__today,.rail__stop{top:5.9rem} .rail__stop{top:calc(5.9rem + 2px)}
+ .rail__fill{animation:none}
+ .block{margin-top:.8rem;padding:.8rem 1rem;break-inside:avoid}
+ .split{gap:0 .8rem}
+ .alerts li{padding:.45rem 0} .alert__text{font-size:.85rem;line-height:1.4}
+ .res-total{font-size:2.4rem} .figures{margin:.5rem 0 0} .figure__val{font-size:1.2rem} .counts{margin-top:.5rem} .counts li{padding:.25rem .6rem}
+ .res-note{margin-top:.6rem;padding:.5rem .7rem;font-size:.82rem}
+ .ep{padding:.35rem .75rem;break-inside:avoid} .ep__det{display:block;grid-column:2 / -1;font-size:.75rem;margin-top:-.15rem}
+ .ep__name small{display:none}
+ .cols{grid-template-columns:1fr;gap:.8rem} .cols > section{padding:.7rem 1rem} .acts{column-count:2;column-gap:1.5rem} .act{grid-template-columns:2.6rem minmax(0,1fr) auto;gap:.55rem;font-size:.8rem;padding:.3rem 0!important} .act__year{display:none} .act__date{min-height:2.2rem!important} #panel-entregado .panel__head p,#panel-plan .panel__head p{display:none} #panel-plan .block{margin-top:.5rem;padding:.6rem .9rem} #panel-plan h3{font-size:1rem;margin-bottom:.3rem} .g-row{min-height:1.95rem!important} .g-row--group{min-height:1.7rem!important} .g-row.g-row--head{min-height:3.7rem!important} .act .status{font-size:.7rem;padding:.15rem .45rem} .act__title{margin:0 0 .1rem;line-height:1.3} .act__date{min-height:2.5rem;padding:.2rem} .act__day{font-size:1rem} .acts > .act:first-child{padding-top:.45rem;border-top:1px solid var(--line-soft)} .roles{grid-template-columns:repeat(5,1fr);gap:.5rem} .roles dl{font-size:.78rem;grid-template-columns:1fr} .roles dd{margin-bottom:.2rem} .cols h3{margin-bottom:.3rem}
+ .g-row{min-height:2.15rem} .g-row--group{min-height:1.9rem} .g-row--head{min-height:3.3rem} .g-lab{padding:.2rem .7rem} .milestones li{padding:.5rem .7rem}
+ .act{padding:.45rem 0;break-inside:avoid} .act__date{min-height:2.8rem}
+ .roles li{break-inside:avoid;padding:.55rem .7rem}
+ .gantt__inner{min-width:0} .g-lab{position:static}
+ .table-wrap{max-height:none;overflow:visible}
+ thead th{position:static} tr{break-inside:avoid}
+ table{font-size:.8rem} th,td{padding:.35rem .5rem}
+ .panel__head{margin-bottom:.6rem} .panel__head h2{font-size:1.5rem}
+ .footer{padding:.6rem 0}
+ #panel-tablero{display:flex;flex-direction:column} #panel-tablero>.hero{order:0} #panel-tablero>section.block{order:1} #panel-tablero>.split{order:2;break-before:page}
+ .deps{gap:.6rem} .dep{padding:.6rem .8rem;gap:.25rem} .dep__txt{font-size:.82rem} .dep__next{font-size:.8rem}
+ .comps{gap:.25rem} .comp{font-size:.8rem} .proj{padding:.5rem 0 .6rem}
+ .gantt--master .g-row{min-height:1.55rem!important} .gantt--master .g-row--group{min-height:1.45rem!important}
+ .gantt--master .g-row.g-row--head{min-height:3.3rem!important} .gantt--master .g-row--head2{min-height:1.6rem!important}
+ .gantt--master .g-lab,#panel-plan .g-lab{padding:.08rem .6rem} .gantt--master .g-name,#panel-plan .g-name{font-size:.76rem} .gantt--master .g-dates,#panel-plan .g-dates{font-size:.64rem;margin-top:0}
+ .gantt--master .g-row--group .g-lab,#panel-plan .g-row--group .g-lab{font-size:.8rem} .g-note{font-size:.62rem} .g-bar{height:.7rem} .g-ms{width:.75rem;height:.75rem}
+ section.block:has(#h-hitos-plan){break-before:page}
+ #panel-plan .g-row{min-height:1.5rem!important} #panel-plan .g-row--group{min-height:1.4rem!important}
+ .scope{gap:.8rem} .scope ul{font-size:.8rem} .scope li{margin-bottom:.05rem} #panel-plan .legend{margin-top:.5rem!important}
+ .acts{column-count:3!important;column-gap:1rem!important} .act{padding:.18rem 0!important;font-size:.72rem!important;line-height:1.2} .act__title{line-height:1.22!important} .act__meta{font-size:.68rem} .act__date{min-height:1.9rem!important;padding:.1rem!important} .act__day{font-size:.9rem!important} .act__mon{font-size:.62rem} .roles dl{font-size:.72rem!important} .roles li{padding:.4rem .55rem!important} .roles .r-name{margin:0 0 .15rem} .act .status{display:none!important} .act{grid-template-columns:2.4rem minmax(0,1fr)!important;font-size:.76rem!important} .act__title{font-weight:500}
+ section.block:has(#h-sprints){break-inside:auto} .sp{font-size:.74rem!important} .sp th,.sp td{padding:.25rem .45rem!important} .sp td li{margin-bottom:0} #hitos-plan li,#panel-plan .milestones li{padding:.35rem .55rem} .milestones .ms-txt{font-size:.75rem} .milestones .ms-title{margin:0}
+ #panel-plan .g-row{min-height:1.2rem!important} #panel-plan .g-row--group{min-height:1.15rem!important} #panel-plan .g-dates{display:none} #panel-plan .scope{grid-template-columns:1fr 1fr} #panel-plan .block{padding:.5rem .9rem} section.block:has(#h-sprints) tr{break-inside:avoid}
+ #panel-plan .g-row{min-height:1.32rem!important} #panel-plan .g-row--group{min-height:1.25rem!important} #panel-plan .g-row.g-row--head{min-height:3rem!important} #panel-plan .block{break-inside:avoid}
+ a{color:inherit;text-decoration:none}
+}
+</style>
+
+<header class="masthead">
+<div class="wrap masthead__inner">
+  <div>
+    <p class="brand"><img class="brand__logo" src="data:image/png;base64,__LOGO__" alt="Consubanco" width="169" height="30"></p>
+    <h1>Nueva App Inversiones</h1>
+  </div>
+  <div class="masthead__meta">
+    <p id="mh-meta"></p>
+    __PDFBTN__<button type="button" class="btn btn--ghost" id="btn-imprimir">Imprimir vista</button>
+  </div>
+</div>
+</header>
+
+<div class="tabs-wrap"><div class="wrap">
+  <div class="tabs" role="tablist" aria-label="Secciones del reporte">
+    <button type="button" class="tab" role="tab" id="tab-tablero" data-tab="tablero" aria-controls="panel-tablero" aria-selected="true">Tablero</button>
+    <button type="button" class="tab" role="tab" id="tab-roadmap" data-tab="roadmap" aria-controls="panel-roadmap" aria-selected="false" tabindex="-1">Roadmap</button>
+    <button type="button" class="tab" role="tab" id="tab-hu" data-tab="hu" aria-controls="panel-hu" aria-selected="false" tabindex="-1">Avance por HU</button>
+    <button type="button" class="tab" role="tab" id="tab-plan" data-tab="plan" aria-controls="panel-plan" aria-selected="false" tabindex="-1">Sprint actual</button>
+    <button type="button" class="tab" role="tab" id="tab-entregado" data-tab="entregado" aria-controls="panel-entregado" aria-selected="false" tabindex="-1">Entregado y equipo</button>
+    <button type="button" class="tab" role="tab" id="tab-detalle" data-tab="detalle" aria-controls="panel-detalle" aria-selected="false" tabindex="-1">Detalle por HU</button>
+  </div>
+</div></div>
+
+<main class="wrap">
+<section class="panel" id="panel-tablero" role="tabpanel" aria-labelledby="tab-tablero" tabindex="0">
+  <div class="hero">
+    <div><h2 class="hero__title" id="hero-t"></h2><p class="hero__objective" id="hero-o"></p><p class="hero__context" id="hero-c"></p></div>
+    <div class="countdown"><span class="countdown__num" id="cd-num">—</span><span class="countdown__txt">días para el fin de desarrollo</span><span class="countdown__date" id="cd-date"></span></div>
+    <div class="hero__rail"><div class="rail" id="rail"></div></div>
+  </div>
+  <div class="split">
+    <section class="block" aria-labelledby="h-proy">
+      <div class="block__head"><h3 id="h-proy">Avance por proyecto</h3><button type="button" class="link-btn" data-ir="roadmap">Ver roadmap</button></div>
+      <p class="meta" id="proy-meta"></p>
+      <div id="proyectos"></div>
+    </section>
+    <section class="block" aria-labelledby="h-al"><h3 id="h-al">Puntos de atención</h3><ul class="alerts" id="alertas"></ul></section>
+  </div>
+  <section class="block" aria-labelledby="h-deps">
+    <div class="block__head"><h3 id="h-deps">Habilitadores del banco</h3><button type="button" class="link-btn" data-ir="roadmap">Ver en el roadmap</button></div>
+    <p class="lead">Entregables de Consubanco que permiten a Ikitech sostener las fechas del plan.</p>
+    <div class="deps" id="deps"></div>
+  </section>
+</section>
+
+<section class="panel" id="panel-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" tabindex="0" hidden>
+  <header class="panel__head"><h2>Roadmap del proyecto</h2><p id="rm-desc"></p></header>
+  <ul class="legend">
+    <li><span class="sw sg-prep"></span>Preparación</li><li><span class="sw sg-done"></span>Ejecutado</li><li><span class="sw sg-ok"></span>Completado</li>
+    <li><span class="sw sg-cur"></span>Semana en curso</li><li><span class="sw sg-dep"></span>Con dependencia del banco</li><li><span class="sw sg-risk"></span>Proyectado con dependencia</li>
+    <li><span class="sw sg-proj"></span>Proyectado</li><li><span class="sw sg-ms"></span>Ventana de hito</li><li><span class="sw sw--today"></span>Hoy</li>
+  </ul>
+  <div id="gantt-master"></div>
+  <section class="block" aria-labelledby="h-hitos-plan"><h3 id="h-hitos-plan">Hitos del plan</h3><ol class="milestones" id="hitos-plan"></ol></section>
+  <section class="block" aria-labelledby="h-sprints"><h3 id="h-sprints">Plan por sprint</h3><p class="meta">Alcance de cada sprint de Ikitech y su equivalente en ClickUp.</p>
+    <div class="table-wrap" style="max-height:none" tabindex="0" role="region" aria-labelledby="h-sprints"><table class="sp" id="tabla-sprints"></table></div></section>
+</section>
+
+<section class="panel" id="panel-hu" role="tabpanel" aria-labelledby="tab-hu" tabindex="0" hidden>
+  <header class="panel__head"><h2>Avance por historia de usuario</h2><p id="hu-desc"></p></header>
+  <div class="split">
+    <section class="block" style="margin-top:0" aria-labelledby="h-res">
+      <h3 id="h-res">Resumen de avance</h3>
+      <div class="res-summary"><div class="res-total" id="res-total"></div>
+        <div><div class="stack" id="res-stack" role="img"></div>
+          <ul class="res-legend"><li><span class="sw" style="background:var(--c-done)"></span>HUs completadas</li><li><span class="sw" style="background:var(--c-front)"></span>Front terminado</li><li><span class="sw" style="background:var(--c-back)"></span>Back terminado</li></ul></div></div>
+      <div class="figures" id="figures"></div>
+      <ul class="counts" id="counts"></ul>
+      <p class="res-note"><strong>Cómo se mide.</strong> Cada HU en desarrollo se divide en dos partes del mismo peso: <strong>front</strong> (pantallas, 50%) y <strong>back</strong> (servicios e integración, 50%). Solo suma lo terminado. Una HU completada cuenta 100% y una por iniciar, 0%.</p>
+    </section>
+    <section class="block" aria-labelledby="h-hu-key" style="margin-top:0">
+      <h3 id="h-hu-key">Cómo leer este avance</h3>
+      <ul class="alerts">
+        <li><p class="alert__title">Avance técnico (Ikitech)</p><p class="alert__text" id="hu-tec"></p></li>
+        <li><p class="alert__title">Avance por HU (ClickUp)</p><p class="alert__text">Mide cuántas historias de usuario del alcance completo ya están terminadas, incluidas las que aún no inician. Por eso avanza más lento al principio, baja cuando entran HUs nuevas al alcance y acelera cuando se conecta el back.</p></li>
+        <li><p class="alert__title">Siguiente salto</p><p class="alert__text" id="hu-salto"></p></li>
+      </ul>
+    </section>
+  </div>
+  <section class="block" aria-labelledby="h-epi">
+    <div class="block__head"><h3 id="h-epi">Avance por épica</h3><span class="meta no-print">Presiona cada barra para ver el detalle</span></div>
+    <ul class="legend"><li><span class="sw" style="background:var(--c-done)"></span>HUs completadas</li><li><span class="sw" style="background:var(--c-front)"></span>Front terminado (HUs en desarrollo)</li><li><span class="sw" style="background:var(--c-back)"></span>Back terminado (HUs en desarrollo)</li><li><span class="sw" style="background:var(--mist);outline:1px solid var(--line)"></span>Por avanzar</li></ul>
+    <ul class="progress-list" id="bars"></ul>
+  </section>
+</section>
+
+<section class="panel" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" tabindex="0" hidden>
+  <header class="panel__head"><h2 id="sp-t"></h2><p id="sp-d"></p></header>
+  <section class="block" aria-labelledby="h-scope" style="margin-top:0"><h3 id="h-scope">Alcance comprometido por Ikitech</h3>
+    <div class="scope"><div style="--c:#4F86C6"><h4>Nueva App Inversiones (N4)</h4><ul id="sc-n4"></ul></div><div style="--c:#E75301"><h4>Ecosistema Rocket</h4><ul id="sc-rk"></ul></div></div></section>
+  <ul class="legend" style="margin-top:1.25rem"><li><span class="sw st-hecho"></span>Completada</li><li><span class="sw st-curso"></span>En curso</li><li><span class="sw st-futuro"></span>Programada</li><li><span class="sw sw--ms ms-key"></span>Cierre del sprint</li><li><span class="sw sw--today"></span>Hoy</li></ul>
+  <div id="gantt"></div>
+  <section class="block" aria-labelledby="h-hitos"><h3 id="h-hitos">Hitos del sprint</h3><ol class="milestones" id="sp-hitos"></ol></section>
+</section>
+
+<section class="panel" id="panel-entregado" role="tabpanel" aria-labelledby="tab-entregado" tabindex="0" hidden>
+  <header class="panel__head"><h2>Entregado y equipo</h2><p>Lo que el equipo de Ikitech ha entregado, de lo más reciente a lo más antiguo, y en qué está trabajando cada integrante.</p></header>
+  <div class="cols">
+    <section aria-labelledby="h-ent"><h3 id="h-ent">Entregado</h3><ul class="acts" id="acts"></ul></section>
+    <section aria-labelledby="h-eq"><h3 id="h-eq">Actividades del equipo</h3><ul class="roles" id="roles"></ul></section>
+  </div>
+</section>
+
+<section class="panel" id="panel-detalle" role="tabpanel" aria-labelledby="tab-detalle" tabindex="0" hidden>
+  <header class="panel__head"><h2>Detalle por historia de usuario</h2><p>Etapa y avance de cada HU. El avance considera front y back con el mismo peso.</p></header>
+  <div class="filters" role="group" aria-label="Filtrar por etapa" id="f-etapa"></div>
+  <div class="filters"><select id="f-epica" aria-label="Filtrar por épica"><option value="">Todas las épicas</option></select><input id="f-q" type="search" placeholder="Buscar HU o nombre" aria-label="Buscar HU o nombre"><span class="meta" id="mx-count"></span></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de historias de usuario"><table>
+    <thead><tr><th>HU</th><th>Nombre</th><th>Épica</th><th>Etapa</th><th>Avance</th><th>Equipo</th><th>Comentario</th></tr></thead><tbody id="mx"></tbody></table></div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap"><p id="foot"></p></div></footer>
+<script>
+const DATA = __HUS__;
+const R = __R__;
+const MES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const D = s => {const [y,m,dd]=s.split("-").map(Number); return new Date(y,m-1,dd);};
+const HOY = (()=>{const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate());})();
+const fC = s => {const x=D(s); return x.getDate()+" "+MES[x.getMonth()]+" "+x.getFullYear();};
+const fL = s => {const x=D(s); return x.getDate()+" de "+MESES[x.getMonth()]+" de "+x.getFullYear();};
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const avg = a => a.reduce((x,y)=>x+y,0)/(a.length||1);
+const pct = x => Math.round(x)+"%";
+const hu = n => n===1?"HU":"HUs";
+const ETAPAS = [["Completada","hecho","#6FAA5F"],["En progreso","curso","#4F86C6"],["Refinada, por iniciar","refinada","#A9C8EC"],["Por refinar","porrefinar","#B6C3D4"],["En backlog","backlog","#D9CDB4"]];
+const ST = Object.fromEntries(ETAPAS.map(([e,k,c])=>[e,{k,c}]));
+const status = e => `<span class="status status--${ST[e].k}">${esc(e)}</span>`;
+const cnt = (rows,e) => rows.filter(r=>r.etapa===e).length;
+const M=R.meta, SP=M.sprint;
+
+/* ---------- Textos generales ---------- */
+document.getElementById("mh-meta").innerHTML = `Plan de Ikitech al <strong>${fC(M.corte_ikitech)}</strong> · ClickUp al ${fC(M.corte_clickup).replace(/ \d{4}$/,"")}<br>${SP.nombre} (${SP.clickup} en ClickUp) · ${D(SP.inicio).getDate()} – ${D(SP.fin).getDate()} ${MES[D(SP.fin).getMonth()]}`;
+document.getElementById("hero-t").textContent=R.hero.titulo; document.getElementById("hero-o").textContent=R.hero.objetivo; document.getElementById("hero-c").textContent=R.hero.contexto;
+document.getElementById("cd-date").textContent=fL(M.fin_desarrollo);
+document.getElementById("proy-meta").textContent=`Avance real reportado por Ikitech al ${fL(M.corte_ikitech).replace(/ de \d{4}$/,"")}, por componente técnico y su peso en cada proyecto.`;
+document.getElementById("rm-desc").textContent=`Master gantt de Ikitech: ${M.roadmap.semanas} semanas, del Sprint 0 de preparación (${fL(M.roadmap.inicio).replace(/ de \d{4}$/,"")}) al fin de desarrollo (${fL(M.fin_desarrollo)}). La semana actual es la ${M.roadmap.semana_actual}.`;
+document.getElementById("hu-desc").textContent=`Avance funcional por HU con datos de ClickUp al ${fL(M.corte_clickup).replace(/ de \d{4}$/,"")}. Complementa el avance técnico por componente que reporta Ikitech.`;
+document.getElementById("hu-tec").textContent=`Mide cada componente de la solución (front, servicios, Incode, APIs del banco) según su peso en el proyecto. Es la cifra oficial del plan: ${R.proyectos.map(p=>p[0].replace(/^Proyecto \d: /,"").replace(/ \(N4\)/,"")+" al "+p[2]+"%").join(" y ")}.`;
+document.getElementById("foot").textContent=`Fuentes: Master Gantt 360° y roadmap de Ikitech (${fL(M.corte_ikitech)}), ClickUp del espacio CSB-Ikitech y backlog de épicas de la Nueva App Inversiones (${fL(M.corte_clickup)}). El avance por HU pondera front 50% y back 50%. Product Owner: Martín Nieto.`;
+document.getElementById("alertas").innerHTML = R.alertas.map(a=>`<li><div class="alert__head"><p class="alert__title">${esc(a.titulo)}</p><span class="status status--${a.estado}">${esc(a.etiqueta)}</span></div><p class="alert__text"${a.dinamico?` id="al-${a.dinamico}"`:""}>${esc(a.texto||"")}</p></li>`).join("");
+document.getElementById("al-front") || document.getElementById("alertas").insertAdjacentHTML("beforeend",'<li hidden><p id="al-front"></p></li>');
+
+/* ---------- Pestañas ---------- */
+const tabs=[...document.querySelectorAll(".tab")];
+function openTab(id,focus){
+  tabs.forEach(t=>{const on=t.dataset.tab===id; t.setAttribute("aria-selected",on); t.tabIndex=on?0:-1;
+    document.getElementById("panel-"+t.dataset.tab).hidden=!on; if(on&&focus) t.focus();});
+  window.scrollTo({top:0});
+}
+tabs.forEach((t,i)=>{t.addEventListener("click",()=>openTab(t.dataset.tab));
+  t.addEventListener("keydown",e=>{const k=e.key; if(k!=="ArrowRight"&&k!=="ArrowLeft") return; e.preventDefault();
+    const n=tabs[(i+(k==="ArrowRight"?1:tabs.length-1))%tabs.length]; openTab(n.dataset.tab,true);});});
+document.getElementById("btn-imprimir").addEventListener("click",()=>window.print());
+
+/* ---------- Resumen ---------- */
+const wip = DATA.filter(r=>r.etapa==="En progreso");
+const tAv = avg(DATA.map(r=>r.avance));
+const sC = 100*cnt(DATA,"Completada")/DATA.length, sF = 50*wip.reduce((s,r)=>s+r.f,0)/DATA.length, sB = 50*wip.reduce((s,r)=>s+r.b,0)/DATA.length;
+const frontOk = wip.filter(r=>r.f===1).length;
+document.getElementById("cd-num").textContent = Math.max(0,Math.round((D(R.meta.fin_desarrollo)-HOY)/864e5));
+document.querySelectorAll("[data-ir]").forEach(b=>b.addEventListener("click",()=>openTab(b.dataset.ir)));
+document.getElementById("res-total").innerHTML = `${pct(tAv)}<small>avance general</small>`;
+const stk=document.getElementById("res-stack");
+stk.innerHTML = `<span style="width:${sC}%;background:var(--c-done)"></span><span style="width:${sF}%;background:var(--c-front)"></span><span style="width:${sB}%;background:var(--c-back)"></span>`;
+stk.setAttribute("aria-label",`Completadas ${pct(sC)}, front ${pct(sF)}, back ${pct(sB)}`);
+document.getElementById("figures").innerHTML = [
+  [pct(avg(wip.map(r=>r.avance))),`avance promedio de las ${wip.length} HUs en desarrollo`],
+  [`${frontOk} de ${wip.length}`,"HUs en desarrollo con el front terminado"],
+  [`${pct(100*avg(DATA.map(r=>r.f)))} · ${pct(100*avg(DATA.map(r=>r.b)))}`,"front · back terminados en todo el alcance"]
+].map(([v,t])=>`<div><span class="figure__val">${v}</span><span class="figure__txt">${t}</span></div>`).join("");
+document.getElementById("counts").innerHTML = [["Completada","completadas"],["En progreso","en desarrollo"],["Refinada, por iniciar","refinadas"],["Por refinar","por refinar"],["En backlog","en backlog"]]
+  .map(([e,t])=>`<li><strong>${cnt(DATA,e)}</strong>${t}</li>`).join("");
+document.getElementById("al-front").textContent = `El front de N4 va al 95% y, en ClickUp, ${frontOk} de las ${wip.length} HUs en desarrollo ya tienen las pantallas terminadas. El enfoque del sprint es el back: conectar esas pantallas con los servicios de Consubanco y los cuestionarios de Rocket.`;
+const potAll=Math.round(100*(cnt(DATA,"Completada")+wip.length)/DATA.length);
+document.getElementById("hu-salto").textContent = `Al cerrar el back de las ${wip.length} HUs en desarrollo, el avance por HU pasa de ${pct(tAv)} a ${potAll}%. Por eso el ambiente de QA y las APIs del banco son clave en este sprint.`;
+
+/* ---------- Avance por épica ---------- */
+const epicas=[...new Set(DATA.map(r=>r.epica))];
+document.getElementById("bars").innerHTML = epicas.map((e,i)=>{
+  const rows=DATA.filter(r=>r.epica===e), tot=rows.length, w=rows.filter(r=>r.etapa==="En progreso");
+  const nc=cnt(rows,"Completada"), nr=cnt(rows,"Refinada, por iniciar"), npr=cnt(rows,"Por refinar"), nbl=cnt(rows,"En backlog");
+  const c=100*nc/tot, f=50*w.reduce((s,r)=>s+r.f,0)/tot, b=50*w.reduce((s,r)=>s+r.b,0)/tot, p=avg(rows.map(r=>r.avance));
+  const nf=w.filter(r=>r.f===1).length, nb=w.filter(r=>r.b===1).length, pot=Math.round(100*(nc+w.length)/tot);
+  const sub=[nc?nc+(nc===1?" completada":" completadas"):"", w.length?w.length+" en desarrollo":""].filter(Boolean).join(" · ")||"Por iniciar";
+  const tile=(col,k,v,of)=>`<div class="pop__tile" style="--c:${col}"><b>${v}${of!==undefined?` <small>/ ${of}</small>`:""}</b><span>${k}</span></div>`;
+  let tiles,msg;
+  if(nc||w.length){
+    tiles=tile("var(--c-done)","Completadas",nc,tot)+tile("var(--c-front)","Front listo",nf,w.length)+tile("var(--c-back)","Back listo",nb,w.length);
+    if(nc===tot) msg=`<strong>Épica completada.</strong> Las ${tot} ${hu(tot)} están entregadas.`;
+    else if(!w.length) msg=`<strong>${nc} ${hu(nc)} ${nc===1?"entregada":"entregadas"}.</strong> Las ${tot-nc} restantes están por iniciar.`;
+    else msg=(nf===w.length?`<strong>El front ya está listo en todas las HUs en desarrollo.</strong>`:`<strong>Front listo en ${nf} de ${w.length} HUs en desarrollo.</strong>`)
+      +(nb<w.length?` Al cerrar el back${nf<w.length?" y el front pendiente":""}, la épica sube a <strong>${pot}%</strong>.`:"");
+  } else {
+    tiles=tile("var(--sky-2)","Refinadas",nr)+tile("#B6C3D4","Por refinar",npr)+tile("#D9CDB4","En backlog",nbl);
+    msg = nr?`<strong>Lista para arrancar:</strong> ${nr} de ${tot} ${hu(tot)} ya están refinadas.`:npr?`<strong>Siguiente paso:</strong> refinar ${npr} ${hu(npr)}.`:`<strong>En backlog:</strong> ${tot} ${hu(tot)} por priorizar.`;
+  }
+  const rest=(nc||w.length)?[[nr,"refinadas"],[npr,"por refinar"],[nbl,"en backlog"]].filter(x=>x[0]).map(x=>x.join(" ")).join(" · "):"";
+  const det=(nc||w.length)?`Completadas ${nc}/${tot}${w.length?` · Front listo ${nf}/${w.length} · Back listo ${nb}/${w.length}`:""}${rest?" · Por iniciar: "+rest:""}`:`Por iniciar: refinadas ${nr} · por refinar ${npr} · backlog ${nbl}`;
+  return `<li class="ep${i>=epicas.length-3?" up":""}" role="button" tabindex="0" aria-expanded="false" aria-label="${esc(e)}, avance ${pct(p)}. Ver detalle">
+    <span class="ep__name">${esc(e)}<small>${tot} ${hu(tot)} · ${sub}</small></span>
+    <span class="bar">${c?`<span style="width:${c}%;background:var(--c-done)"></span>`:""}${f?`<span style="width:${f}%;background:var(--c-front)"></span>`:""}${b?`<span style="width:${b}%;background:var(--c-back)"></span>`:""}</span>
+    <span class="ep__val">${pct(p)}</span>
+    <span class="ep__det meta">${det}</span>
+    <div class="pop" role="dialog" aria-label="Detalle de ${esc(e)}">
+      <div class="pop__h"><div><h4>${esc(e)}</h4><small>${tot} ${hu(tot)}${w.length?` · ${w.length} en desarrollo`:""}</small></div><span class="pop__big">${pct(p)}</span></div>
+      <div class="pop__tiles">${tiles}</div><p class="pop__msg">${msg}</p>${rest?`<p class="pop__foot">Por iniciar: ${rest}</p>`:""}
+    </div></li>`;
+}).join("");
+const closeAll=()=>document.querySelectorAll('.ep[aria-expanded="true"]').forEach(x=>x.setAttribute("aria-expanded","false"));
+function openEp(row,x){
+  const was=row.getAttribute("aria-expanded")==="true"; closeAll(); if(was) return;
+  row.setAttribute("aria-expanded","true");
+  const pop=row.querySelector(".pop"), W=row.clientWidth, pw=pop.offsetWidth;
+  if(innerWidth>720){ const t=row.querySelector(".bar").offsetLeft; if(x==null) x=t+40;
+    const left=Math.max(8,Math.min(x-30,W-pw-8)); pop.style.setProperty("--px",left+"px"); pop.style.setProperty("--ax",Math.max(14,Math.min(x-left-6,pw-28))+"px"); }
+  else pop.style.setProperty("--ax",Math.max(14,(x??W/2)-12)+"px");
+}
+const barsEl=document.getElementById("bars");
+barsEl.addEventListener("click",ev=>{ if(ev.target.closest(".pop")) return; const r=ev.target.closest(".ep"); if(r) openEp(r,ev.clientX-r.getBoundingClientRect().left); });
+barsEl.addEventListener("keydown",ev=>{ const r=ev.target.closest(".ep"); if(r&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault(); openEp(r,null);} });
+document.addEventListener("click",ev=>{ if(!ev.target.closest("#bars")) closeAll(); });
+document.addEventListener("keydown",ev=>{ if(ev.key==="Escape") closeAll(); });
+
+
+/* ---------- Ruta de hitos ---------- */
+(function(){
+  const t0=D(R.rail.inicio), t1=D(R.rail.fin), P=x=>(Math.min(100,Math.max(0,100*(x-t0)/(t1-t0)))).toFixed(2)+"%";
+  const hl = HOY.getDate()+" "+MES[HOY.getMonth()];
+  document.getElementById("rail").innerHTML = `<div class="rail__line" style="--hoy:${P(HOY)}"><div class="rail__fill"></div></div>
+   <div class="rail__today" style="--hoy:${P(HOY)}"><span>Hoy, ${hl}</span></div>
+   <ol class="rail__stops">${R.rail.hitos.map(([x,f,t,k,tier])=>`<li class="rail__stop is-${k} ${tier.split(" ").map(c=>c==="a"||c==="b"?"tier-"+c:"is-"+c).join(" ")}" style="--pos:${P(D(x))}"><span class="rail__dot"></span><span class="rail__label"><strong>${f}</strong>${t}</span></li>`).join("")}</ol>`;
+})();
+
+/* ---------- Avance por proyecto ---------- */
+const STC={"Completado":["hecho","#7DB56F"],"En progreso":["curso","#4F86C6"],"Con dependencia":["dep","#E75301"],"Proyectado":["programada",""]};
+document.getElementById("proyectos").innerHTML = R.proyectos.map(([n,sub,v,stt,comps])=>`<div class="proj">
+  <div class="proj__head"><p class="proj__name">${esc(n)}<small>${sub} · <span class="status status--${STC[stt][0]}">${stt==="Con dependencia"?"Requiere atención":stt}</span></small></p><span class="proj__big">${v}%</span></div>
+  <div class="bar" role="img" aria-label="${esc(n)} ${v}%"><span style="width:${v}%;background:var(--navy)"></span></div>
+  <div class="comps__head"><span>Componente</span><span>Peso</span><span>Avance</span><span></span></div>
+  <ul class="comps">${comps.map(([cn,cs,w,a,cst])=>`<li class="comp"><span class="comp__n">${esc(cn)}<small>${esc(cs)}</small></span><span class="comp__w">${w?w+"%":"—"}</span>${cst==="Proyectado"
+     ?`<span class="comp__plan">Programado</span>`
+     :`<span class="bar"><span style="width:${a}%;background:${STC[cst][1]}"></span></span><span class="comp__v">${a}%</span>`}</li>`).join("")}</ul></div>`).join("");
+
+/* ---------- Habilitadores del banco ---------- */
+document.getElementById("deps").innerHTML = R.deps.map(([c,t,o,v,stt,k,col,txt,nx])=>`<article class="dep" style="--c:${col}">
+  <div class="dep__top"><span class="dep__code">${c}</span><span class="status status--${k}">${stt}</span></div>
+  <h4>${t}</h4><p class="dep__own">Responsable: ${o} · <span class="dep__pct">${v}%</span></p>
+  <span class="bar"><span style="width:${v}%;background:${col}"></span></span>
+  <p class="dep__txt">${txt}</p><p class="dep__next"><b>Siguiente paso:</b> ${nx}</p></article>`).join("");
+
+/* ---------- Roadmap ---------- */
+(function(){
+  const NW=M.roadmap.semanas, W0=D(M.roadmap.inicio), L=w=>100*w/NW;
+  const today=(HOY-W0)/864e5/7; const TL=L(Math.min(NW,Math.max(0,today)));
+  const months=[]; for(let w=0;w<NW;w++){const x=new Date(+W0+w*7*864e5); const m=x.getMonth(); if(!months.length||months[months.length-1].m!==m) months.push({m,y:x.getFullYear(),a:w,b:w+1}); else months[months.length-1].b=w+1;}
+  const sprints=[["S0 · prep.",0,3],["Sprint 1",3,6],["Sprint 2",6,9],["Sprint 3",9,12],["Sprint 4",12,15],["Sprint 5",15,18],["Sprint 6",18,21]];
+  const MC=s=>s.charAt(0).toUpperCase()+s.slice(1);
+  let h=`<div class="gantt gantt--master"><div class="gantt__scroll"><div class="gantt__inner">
+   <div class="g-grid">${months.map(m=>`<span class="g-line" style="left:${L(m.a)}%"></span>`).join("")}<span class="g-today" style="left:${TL}%"></span></div>
+   <div class="g-row g-row--head"><div class="g-lab">Componente</div><div class="g-track">${months.map(m=>`<div class="g-month" style="left:${L(m.a)}%;width:${L(m.b)-L(m.a)}%">${MC(MES[m.m])} ${m.y}<span>W${m.a+1} – W${m.b}</span></div>`).join("")}<span class="g-hoy" style="left:${TL}%">Hoy</span></div><span></span></div>
+   <div class="g-row g-row--head2"><div class="g-lab">Sprint de Ikitech</div><div class="g-track">${sprints.map(([t,a,b])=>`<div class="g-month${today>=a&&today<b?" is-cur":""}" style="left:${L(a)}%;width:${L(b)-L(a)}%">${t}</div>`).join("")}</div><span></span></div>`;
+  R.gantt_master.forEach(([g,c,note,rows])=>{
+    h+=`<div class="g-row g-row--group" style="--c:${c}"><div class="g-lab"><span>${esc(g)}<span class="g-note">${note}</span></span></div><div class="g-track"></div><span></span></div>`;
+    rows.forEach(([n,own,w,a,stt,segs,kind])=>{
+      const dep=segs.some(x=>x[0]==="dep");
+      const sub=[own, w?`peso ${w}%`:"", (a||stt==="En desarrollo")?`<span class="g-pct">${a}%</span>`:"", esc(stt)].filter(Boolean).join(" · ");
+      const bars=segs.map(([k,x,y])=>`<span class="g-bar sg-${k}" style="left:${L(x)}%;width:${L(y+1)-L(x)}%"></span>`).join("")
+        +(kind?`<span class="g-ms ${kind==="key"?"is-key":"ms-navy"}" style="left:${L(segs[0][2]+1)-100/NW*.25}%"></span>`:"");
+      h+=`<div class="g-row${dep?" is-dep":""}"><div class="g-lab"><span class="g-name">${esc(n)}</span><span class="g-dates">${sub}</span></div><div class="g-track">${bars}</div><span></span></div>`;
+    });
+  });
+  document.getElementById("gantt-master").innerHTML=h+`</div></div></div>`;
+  document.getElementById("hitos-plan").innerHTML=R.hitos_plan.map(([f,t,x,dt,k])=>`<li class="${k?"is-key":D(dt)<HOY?"is-done":""}"><span class="ms-date">${f}</span><span class="ms-title">${t}</span><span class="ms-txt">${x}</span></li>`).join("");
+  const li=a=>`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+  document.getElementById("tabla-sprints").innerHTML=`<thead><tr><th>Sprint</th><th>ClickUp</th><th>Nueva App Inversiones (N4)</th><th>Ecosistema Rocket</th><th>Hito</th></tr></thead><tbody>${R.sprints.map(([s,f,cu,n4,rk,hi,k])=>`<tr class="${k==="curso"?"is-current":""}"><th scope="row">${s}<small>${f}</small></th><td>${cu}</td><td>${li(n4)}</td><td>${li(rk)}</td><td><span class="status status--${k}">${k==="hecho"?"Completado":k==="curso"?"En curso":"Programado"}</span><br><span class="meta">${esc(hi)}</span></td></tr>`).join("")}</tbody>`;
+})();
+
+/* ---------- Sprint actual ---------- */
+(function(){
+  const S=R.sprint_actual;
+  document.getElementById("sp-t").textContent=S.titulo; document.getElementById("sp-d").textContent=S.descripcion;
+  document.getElementById("sc-n4").innerHTML=S.alcance_n4.map(x=>`<li>${esc(x)}</li>`).join("");
+  document.getElementById("sc-rk").innerHTML=S.alcance_rocket.map(x=>`<li>${esc(x)}</li>`).join("");
+  document.getElementById("sp-hitos").innerHTML=S.hitos.map(([f,t,x,k])=>`<li class="${k==="key"?"is-key":k==="done"?"is-done":""}"><span class="ms-date">${f}</span><span class="ms-title">${t}</span><span class="ms-txt">${x}</span></li>`).join("");
+  const t0=D(SP.inicio), t1=D(SP.fin), ND=(t1-t0)/864e5+1, L=x=>100*(x-t0)/(ND*864e5), TD=Math.min(100,Math.max(0,L(HOY)+100/ND*.5));
+  const W=S.semanas.map(([a,t,r])=>[D(a),t,r]);
+  const fd=x=>x.getDate()+" "+MES[x.getMonth()];
+  const st=(a,b)=>b<HOY?"hecho":a<=HOY?"curso":"futuro";
+  let h=`<div class="gantt"><div class="gantt__scroll"><div class="gantt__inner">
+   <div class="g-grid">${W.map(w=>`<span class="g-line" style="left:${L(w[0])}%"></span>`).join("")}<span class="g-today" style="left:${TD}%"></span></div>
+   <div class="g-row g-row--head"><div class="g-lab">Actividad</div><div class="g-track">${W.map((w,i)=>`<div class="g-month" style="left:${L(w[0])}%;width:${(i<W.length-1?L(W[i+1][0]):100)-L(w[0])}%">${w[1]}<span>${w[2]}</span></div>`).join("")}<span class="g-hoy" style="left:${TD}%">Hoy</span></div><span></span></div>`;
+  S.grupos.forEach(([g,c,note,rows])=>{
+    h+=`<div class="g-row g-row--group" style="--c:${c}"><div class="g-lab"><span>${g}<span class="g-note">${note}</span></span></div><div class="g-track"></div><span></span></div>`;
+    rows.forEach(([n,s,a,b])=>{a=D(a);b=D(b);const k=st(a,b);
+      h+=`<div class="g-row${k==="curso"?" is-current":""}"><div class="g-lab"><span class="g-name">${esc(n)}</span><span class="g-dates">${esc(s)} · ${fd(a)} – ${fd(b)}</span></div>
+       <div class="g-track"><span class="g-bar st-${k}" style="left:${L(a)}%;width:${L(new Date(+b+864e5))-L(a)}%" title="${esc(n)}"></span></div><span></span></div>`;});
+  });
+  const [cd,ct,cn]=S.cierre;
+  h+=`<div class="g-row g-row--group" style="--c:var(--ember)"><div class="g-lab"><span>${ct}<span class="g-note">${cn}</span></span></div><div class="g-track"><span class="g-ms is-key" style="left:${L(D(cd))+100/ND*.5}%"></span></div><span></span></div>`;
+  document.getElementById("gantt").innerHTML=h+`</div></div></div>`;
+})();
+
+/* ---------- Entregado y equipo ---------- */
+const COLF={"Sprint":"#2A4A7B","Onboarding":"#1B355D","N4":"#4F86C6","N4 servicios":"#4F86C6","N4 y Rocket":"#7DACE3","Rocket":"#E75301","Calidad":"#3F8A3A","Experiencia":"#983920"};
+document.getElementById("acts").innerHTML = R.entregado.slice().sort((a,b)=>D(b[0])-D(a[0])).map(([x,rango,fr,t])=>{x=D(x); return `<li class="act" style="--c:${COLF[fr]||"#9FA8B3"}">
+  <div class="act__date"><span class="act__day">${x.getDate()}</span><span class="act__mon">${MES[x.getMonth()]}</span><span class="act__year">${x.getFullYear()}</span></div>
+  <div><p class="act__title">${esc(t)}</p><p class="act__meta"><span class="tag" style="--c:${COLF[fr]||"#9FA8B3"}">${esc(fr)}</span><span>${rango}</span></p></div>
+  <span class="status status--hecho">Entregado</span></li>`;}).join("");
+document.getElementById("roles").innerHTML = R.equipo.map(([n,r,e,c])=>`<li><span class="r-rol">${r}</span><span class="r-name">${n}</span><dl><dt>Entregado</dt><dd>${esc(e)}</dd><dt>En curso</dt><dd>${esc(c)}</dd></dl></li>`).join("");
+
+/* ---------- Detalle por HU ---------- */
+const fe=document.getElementById("f-epica"), fq=document.getElementById("f-q"), fc=document.getElementById("f-etapa");
+let etapa="";
+epicas.forEach(e=>fe.add(new Option(e,e)));
+fc.innerHTML=[`<button type="button" class="chip-btn" data-v="" aria-pressed="true">Todas <span class="chip-btn__n">(${DATA.length})</span></button>`,
+  ...ETAPAS.map(([e,k,c])=>`<button type="button" class="chip-btn" data-v="${esc(e)}" aria-pressed="false" style="--c:${c}">${esc(e)} <span class="chip-btn__n">(${cnt(DATA,e)})</span></button>`)].join("");
+fc.addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; etapa=b.dataset.v;
+  fc.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)); render();});
+const FC={"Listo":"#2C6526","En curso":"#734A00","Pendiente":"#5F6F87"};
+function fb(r){
+  if(!r.fs) return `<span class="meta">—</span>`;
+  if(r.etapa==="Completada") return `<div class="fb"><span class="bar"><span style="width:100%;background:var(--c-done)"></span></span><small><b>100%</b> · Completada</small></div>`;
+  return `<div class="fb"><span class="bar"><span style="width:${r.f*50}%;background:var(--c-front)"></span><span style="width:${r.b*50}%;background:var(--c-back)"></span></span>
+    <small><b>${r.avance}%</b> · Front <span style="color:${FC[r.fs]}">${r.fs.toLowerCase()}</span> · Back <span style="color:${FC[r.bs]}">${r.bs.toLowerCase()}</span></small></div>`;
+}
+function render(){
+  const q=fq.value.trim().toLowerCase();
+  const rows=DATA.filter(r=>(!fe.value||r.epica===fe.value)&&(!etapa||r.etapa===etapa)&&(!q||(r.codigo+" "+r.nombre).toLowerCase().includes(q)));
+  document.getElementById("mx-count").textContent=rows.length+" de "+DATA.length+" HUs";
+  document.getElementById("mx").innerHTML=rows.map(r=>`<tr>
+    <td class="code">${r.link?`<a href="${r.link}" target="_blank" rel="noopener">${esc(r.codigo)}</a>`:esc(r.codigo)}</td>
+    <td>${esc(r.nombre)}</td><td class="muted">${esc(r.epica)}</td><td>${status(r.etapa)}</td><td>${fb(r)}</td>
+    <td class="muted">${esc(r.devs)}</td><td class="muted">${esc(r.nota)}</td></tr>`).join("")||`<tr><td colspan="7" class="meta">Sin resultados con estos filtros.</td></tr>`;
+}
+fe.addEventListener("change",render); fq.addEventListener("input",render);
+render();
+</script>

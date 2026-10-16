@@ -1,6 +1,6 @@
 {
  "meta": {
-  "corte_ikitech": "2026-10-15",
+  "corte_ikitech": "2026-10-16",
   "corte_clickup": "2026-10-16",
   "fin_desarrollo": "2026-12-25",
   "sprint": {
@@ -112,7 +112,7 @@
   [
    "Proyecto 1: Nueva App Inversiones (N4)",
    "Peso 50% del programa",
-   38.5,
+   36.5,
    "En progreso",
    [
     [
@@ -256,7 +256,7 @@
   [
    "Proyecto 1: Nueva App Inversiones (N4)",
    "#4F86C6",
-   "Peso 50% · avance 38.5%",
+   "Peso 50% · avance 36.5%",
    [
     [
      "Front de los journeys N4",
@@ -762,8 +762,7 @@
    "SP4-Q4",
    [
     "Firma de contratos con Incode (NOM-151)",
-    "Regresión automatizada sin errores",
-    "Publicación en tiendas"
+    "Regresión automatizada sin errores"
    ],
    [
     "Fin de desarrollo; lista para UAT y Friends & Family"

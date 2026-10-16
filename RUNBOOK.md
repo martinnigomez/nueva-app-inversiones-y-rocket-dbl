@@ -12,7 +12,7 @@ Este documento es la guía que sigue Claude cada jueves a las 23:59 (hora de la 
 |---|---|---|
 | ClickUp | Espacio **CSB-Ikitech** (id `90146380570`) | Etapa de cada HU, avance front/back por subtareas, entregas recientes, quién trabaja en qué |
 | Hoja de épicas "Layout _Épicas y HU" | Google Sheets, id en `data/reporte.json` → `meta.hoja_epicas_id` | HUs del alcance que aún no existen en ClickUp (backlog) y nombres de épicas |
-| Master Gantt de Ikitech | Archivo `.xlsx` más reciente en la carpeta `ikitech/` del repositorio **privado** `mnieto-consubanco/fuentes-avance-inversiones` (nombre `AAAA-MM-DD_*.xlsx`). Nunca lo copies al repositorio público | Avance real por proyecto y componente, roadmap de 21 semanas, sprints, hitos, habilitadores del banco y alertas |
+| Master Gantt de Ikitech | Google Drive, archivo `consubanco_project_gantt_roadmap.xlsx` (fileId `1f0aMSS-JAf1Lst2H9VL68gUPf8-7KKgQ`). Ikitech lo actualiza en el mismo archivo. Nunca lo copies al repositorio público | Avance real por proyecto y componente, roadmap de 21 semanas, sprints, hitos, habilitadores del banco y alertas |
 
 Listas de producto en ClickUp (las únicas que cuentan como HUs):
 
@@ -60,7 +60,11 @@ Lee la hoja (id en `meta.hoja_epicas_id`) con el conector de Google Sheets. Agre
 
 ## Paso 3. Master Gantt de Ikitech → `data/reporte.json`
 
-Clona el repositorio privado `mnieto-consubanco/fuentes-avance-inversiones` (con `add_repo`) y toma el `.xlsx` más reciente de `ikitech/`. Si su fecha no es posterior a `meta.corte_ikitech`, conserva el plan como está y solo revisa los textos que dependen de la fecha.
+Lee el archivo con el conector de **Google Drive**:
+
+1. `get_file_metadata` con el fileId `1f0aMSS-JAf1Lst2H9VL68gUPf8-7KKgQ`. Si `modifiedTime` (convertido a hora de la CDMX) no es posterior a `meta.corte_ikitech`, conserva el plan como está y solo revisa los textos que dependen de la fecha.
+2. Si es más nuevo, `download_file_content` devuelve el `.xlsx` en base64 (campo `content`). Decodifícalo a un archivo **fuera** del repositorio (por ejemplo `/tmp/ikitech/gantt.xlsx`) y ábrelo con openpyxl para leer valores y colores de celda. `read_file_content` sirve para una lectura rápida del texto, pero no trae los colores del gantt.
+3. Compara contra el corte anterior y aplica solo lo que cambió.
 
 - **Pestaña "Executive Dashboard 360":**
   - Semana y sprint activo → `meta.roadmap.semana_actual` y `meta.sprint`.
@@ -80,7 +84,7 @@ Clona el repositorio privado `mnieto-consubanco/fuentes-avance-inversiones` (con
     - `FFD966` = `ms` (ventana de hito)
     - `C6EFCE` = `ok`
   - Los índices de semana empiezan en 0 (W1 = 0).
-- `meta.corte_ikitech` = la fecha del archivo.
+- `meta.corte_ikitech` = la fecha de `modifiedTime` del archivo en Drive (hora de la CDMX).
 - Revisa `hitos_plan` y `rail.hitos` contra el archivo.
 
 Si encuentras inconsistencias dentro del archivo de Ikitech (totales que no cuadran con los pesos, dos fechas para un mismo hito), **no** las pongas en el reporte. Repórtalas a Martín en el resumen final.

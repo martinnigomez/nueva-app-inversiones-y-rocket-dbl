@@ -8,14 +8,11 @@ El reporte se actualiza **cada jueves a las 23:59 (CDMX)** con tres fuentes:
 
 1. **ClickUp** (espacio CSB-Ikitech): etapa de cada HU y avance de front y back.
 2. **Hoja "Layout _Épicas y HU"**: alcance completo de épicas y HUs.
-3. **Master Gantt de Ikitech**: el archivo `.xlsx` más reciente del repositorio **privado** `mnieto-consubanco/fuentes-avance-inversiones` (carpeta `ikitech/`). Los archivos de origen nunca se guardan en este repositorio público.
+3. **Master Gantt de Ikitech**: el archivo `consubanco_project_gantt_roadmap.xlsx` en Google Drive, que se lee en línea con el conector de Drive. Los archivos de origen nunca se guardan en este repositorio público.
 
-## Cómo subir el archivo semanal de Ikitech
+## Archivo de Ikitech en Google Drive
 
-1. Entra al repositorio **privado** `mnieto-consubanco/fuentes-avance-inversiones`, carpeta `ikitech/`.
-2. Usa **Add file › Upload files** y arrastra el `.xlsx`.
-3. Renómbralo con la fecha al inicio, por ejemplo `2026-10-22_consubanco_project_gantt_roadmap.xlsx`.
-4. Da clic en **Commit changes**. Súbelo antes del jueves a las 23:59.
+Ikitech debe actualizar **siempre el mismo archivo** de Drive: editándolo directamente o con **Administrar versiones › Subir nueva versión**. Si sube un archivo nuevo con otro nombre, el reporte seguirá leyendo el anterior.
 
 ## Estructura
 

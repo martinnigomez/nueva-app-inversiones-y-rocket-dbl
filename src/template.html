@@ -521,7 +521,7 @@ const cnt = (rows,e) => rows.filter(r=>r.etapa===e).length;
 const M=R.meta, SP=M.sprint;
 
 /* ---------- Textos generales ---------- */
-document.getElementById("mh-meta").innerHTML = `Plan de Ikitech al <strong>${fC(M.corte_ikitech)}</strong> · ClickUp al ${fC(M.corte_clickup).replace(/ \d{4}$/,"")}<br>${SP.nombre} (${SP.clickup} en ClickUp) · ${D(SP.inicio).getDate()} – ${D(SP.fin).getDate()} ${MES[D(SP.fin).getMonth()]}`;
+document.getElementById("mh-meta").innerHTML = `Plan de Ikitech al <strong>${fC(M.corte_ikitech)}</strong> · ClickUp al ${fC(M.corte_clickup).replace(/ \d{4}$/,"")}<br>${SP.nombre}${SP.ikitech?` (${SP.ikitech} de Ikitech)`:` (${SP.clickup} en ClickUp)`} · ${D(SP.inicio).getDate()}${D(SP.inicio).getMonth()!==D(SP.fin).getMonth()?" "+MES[D(SP.inicio).getMonth()]:""} – ${D(SP.fin).getDate()} ${MES[D(SP.fin).getMonth()]}`;
 document.getElementById("hero-t").textContent=R.hero.titulo; document.getElementById("hero-o").textContent=R.hero.objetivo; document.getElementById("hero-c").textContent=R.hero.contexto;
 document.getElementById("cd-date").textContent=fL(M.fin_desarrollo);
 document.getElementById("proy-meta").textContent=`Avance real reportado por Ikitech al ${fL(M.corte_ikitech).replace(/ de \d{4}$/,"")}, por componente técnico y su peso en cada proyecto.`;

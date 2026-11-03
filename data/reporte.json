@@ -1,25 +1,26 @@
 {
  "meta": {
-  "corte_ikitech": "2026-10-16",
-  "corte_clickup": "2026-10-16",
+  "corte_ikitech": "2026-10-19",
+  "corte_clickup": "2026-11-03",
   "fin_desarrollo": "2026-12-25",
   "sprint": {
-   "nombre": "Sprint 3",
-   "clickup": "SP1-Q4",
-   "inicio": "2026-10-05",
-   "fin": "2026-10-23"
+   "nombre": "Sprint 2 Q4",
+   "clickup": "SP2-Q4",
+   "ikitech": "Sprint 4",
+   "inicio": "2026-10-26",
+   "fin": "2026-11-16"
   },
   "roadmap": {
    "inicio": "2026-08-03",
    "semanas": 21,
-   "semana_actual": "W11 (12 al 16 de octubre)"
+   "semana_actual": "W14 (2 al 6 de noviembre)"
   },
   "hoja_epicas_id": "PENDIENTE"
  },
  "hero": {
   "titulo": "Cuenta Digital N4 y Rocket",
   "objetivo": "Construir junto con Ikitech la nueva app de Consubanco para abrir la Cuenta Digital N4 y las cuentas de inversión para menores de edad de Rocket, con fin de desarrollo planeado para el 25 de diciembre de 2026.",
-  "contexto": "Línea base de 18 semanas, del 24 de agosto al 25 de diciembre. Estamos en la semana 2 del Sprint 3 de Ikitech, que en ClickUp corresponde al Sprint 1 del Q4."
+  "contexto": "Línea base de 18 semanas, del 24 de agosto al 25 de diciembre. Estamos en la semana 2 del Sprint 2 Q4 de ClickUp (26 de octubre al 16 de noviembre), que en el plan de Ikitech corresponde al Sprint 4."
  },
  "rail": {
   "inicio": "2026-08-03",
@@ -49,7 +50,7 @@
    [
     "2026-10-23",
     "23 oct",
-    "Hito 1: Onboarding N4",
+    "Hito 1: Onboarding N4 (con dependencia del ambiente de QA)",
     "next",
     "b"
    ],
@@ -81,13 +82,13 @@
    "titulo": "Ambiente de QA en la nube",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "El backend y la integración con las APIs del banco ya están listos en desarrollo. Para pasarlos a pruebas se necesita que el equipo de Cloud habilite el ambiente de QA en GCP con sus URLs, secretos y certificado SSL. Con eso arrancan las pruebas automatizadas de punta a punta y la ejecución de los 145 casos de prueba diseñados."
+   "texto": "Los servicios de N4 y Rocket avanzan en el ambiente de desarrollo: esta semana se integraron el endpoint base, la geolocalización, el consentimiento de INE y la revisión del teléfono en listas de riesgo. Para pasarlos a pruebas se necesita que el equipo de Cloud habilite el ambiente de QA en GCP con sus URLs, secretos y certificado SSL. Con eso se confirma el Hito 1 y arrancan las pruebas automatizadas de punta a punta."
   },
   {
    "titulo": "Definiciones de Rocket",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Rocket tiene el detalle hasta el Home del tutor y el login de la consola del menor. Para seguir se necesitan los flujos siguientes (movimientos, transferencias, naves, misiones y gamificación) y responder las dudas enviadas el 30 de septiembre, 7 y 13 de octubre. Ikitech propone una mesa de trabajo de 2 horas con los POs; si se resuelve esta semana, el plan se mantiene, y si no, estima un ajuste de 1 a 1.5 sprints."
+   "texto": "Buen avance: ya están capturadas en ClickUp las HUs de naves de ahorro, misiones, movimientos, detalle de cuenta, perfil y notificaciones de la app y la consola. El siguiente paso es refinarlas y responder las dudas enviadas el 30 de septiembre, 7 y 13 de octubre. Ikitech estima un ajuste de 1 a 1.5 sprints si estas definiciones no se cierran a tiempo."
   },
   {
    "titulo": "Front listo, back en marcha",
@@ -99,13 +100,13 @@
    "titulo": "Actualización de Incode",
    "estado": "curso",
    "etiqueta": "En marcha",
-   "texto": "La nueva versión del SDK de Incode requirió más esfuerzo del previsto; en Rocket ya se subió la versión nueva (14 de octubre). La integración va al 80% en N4 y al 90% en Rocket, donde falta validar las reglas de parentesco y el acta de nacimiento."
+   "texto": "Ya está la configuración de Incode para los flujos de N4 y Rocket (20 de octubre). La integración va al 80% en N4 y al 90% en Rocket, donde falta validar las reglas de parentesco y el acta de nacimiento."
   },
   {
-   "titulo": "Más HUs listas para arrancar",
+   "titulo": "Rocket suma HUs completadas",
    "estado": "hecho",
    "etiqueta": "Listo",
-   "texto": "Inicio de sesión ya está refinada (HU_AC_006 a 012). Rocket suma seis HUs refinadas: generación de firma y de contraseña en la apertura, y cuatro de la consola del menor (activación con enlace o código, inicio de sesión y recuperación de contraseña)."
+   "texto": "El 26 de octubre se completaron el Home de la cuenta Rocket, la generación de accesos a la consola desde la app y “Mi Tripulación” (HU0043 a 0045). La activación de la cuenta del menor con enlace o código ya está en desarrollo."
   }
  ],
  "proyectos": [
@@ -226,7 +227,7 @@
    "En desarrollo",
    "curso",
    "#4F86C6",
-   "Servicios para la apertura y el enrolamiento desde cero. Ya se entregaron las credenciales del ambiente de desarrollo.",
+   "Servicios para la apertura y el enrolamiento desde cero. Ya se entregaron las credenciales del ambiente de desarrollo y se preparó la entrega del código para el ambiente del banco (20 oct).",
    "Publicar las APIs en el ambiente de QA."
   ],
   [
@@ -237,8 +238,8 @@
    "Requiere atención",
    "dep",
    "#E75301",
-   "Respuestas a las dudas del 30 de septiembre, 7 y 13 de octubre, y HUs de los flujos posteriores al Home del tutor y al login del menor.",
-   "Mesa de trabajo de 2 horas con los POs esta semana."
+   "Ya se capturaron en ClickUp las HUs de naves, misiones, movimientos y perfil. Faltan las respuestas a las dudas del 30 de septiembre, 7 y 13 de octubre.",
+   "Refinar con Ikitech las HUs nuevas de Rocket."
   ],
   [
    "CSB-DEP-03",
@@ -640,7 +641,7 @@
   [
    "23 oct 2026",
    "Hito 1: Onboarding N4",
-   "Enrolamiento N4 de punta a punta (Sprint 3)",
+   "Enrolamiento N4 de punta a punta (Sprint 3); pases a QA con dependencia del ambiente en la nube",
    "2026-10-23"
   ],
   [
@@ -724,8 +725,8 @@
     "Regla SPEI en el Core ICBS y parentesco",
     "Consola web del menor en CDN"
    ],
-   "Hito 1: Onboarding N4 y muestra ejecutiva (13 oct)",
-   "curso"
+   "Hito 1: Onboarding N4; pases a QA con dependencia del ambiente en la nube",
+   "hecho"
   ],
   [
    "Sprint 4",
@@ -740,7 +741,7 @@
     "Temas Espacio y Océano; Naves"
    ],
    "Hito 2: Simulador y Consola Rocket",
-   "programada"
+   "curso"
   ],
   [
    "Sprint 5",
@@ -772,81 +773,111 @@
   ]
  ],
  "sprint_actual": {
-  "titulo": "Sprint 3 · SP1-Q4",
-  "descripcion": "Del 5 al 23 de octubre. El foco es conectar con los servicios las pantallas que ya están construidas en N4 y Rocket, y cerrar el Hito 1: onboarding N4 de punta a punta.",
+  "titulo": "Sprint 2 Q4 · Sprint 4 de Ikitech",
+  "descripcion": "Del 26 de octubre al 16 de noviembre. El foco es terminar los servicios del onboarding N4 y de la apertura Rocket, arrancar la consola del menor y preparar el Hito 2: simulador de inversiones y Consola Rocket (13 de noviembre).",
   "alcance_n4": [
-   "Bienvenida y enrolamiento N4 de punta a punta",
-   "Inicio de sesión con CURP",
-   "Bloqueos en inicio de sesión (AD y CRM)",
-   "Temporizador de 90 segundos para el código SMS",
-   "Incode 2.0",
-   "Ruta alterna (fallback) Karalundi"
+   "Servicios de bienvenida, contacto, INE y domicilio",
+   "Revisión del teléfono en listas de riesgo (integrada el 29 oct)",
+   "Documentos de contratación y firma",
+   "Simulador de inversiones con tasas del Core ICBS",
+   "Dashboard con saldo que se puede ocultar"
   ],
   "alcance_rocket": [
-   "Varios menores por tutor: “Mi Tripulación”",
-   "Regla SPEI en el Core ICBS (sin transferencias a terceros)",
-   "Guardar el parentesco para su seguimiento",
-   "Consola web del menor publicada en CDN"
+   "Home, accesos a la consola y “Mi Tripulación” (completadas el 26 oct)",
+   "Servicios de la apertura: cuestionarios PLD, domicilio y acta de nacimiento",
+   "Activación de la cuenta del menor con enlace o código",
+   "Consola web del menor en la nube (React 19), temas Espacio y Océano"
   ],
   "semanas": [
    [
-    "2026-10-05",
-    "Semana 1 · W10",
-    "5 – 9 oct"
+    "2026-10-26",
+    "Semana 1 · W13",
+    "26 – 30 oct"
    ],
    [
-    "2026-10-12",
-    "Semana 2 · W11",
-    "12 – 16 oct"
+    "2026-11-02",
+    "Semana 2 · W14",
+    "2 – 6 nov"
    ],
    [
-    "2026-10-19",
-    "Semana 3 · W12",
-    "19 – 23 oct"
+    "2026-11-09",
+    "Semana 3 · W15",
+    "9 – 16 nov"
    ]
   ],
   "grupos": [
    [
     "Cuenta Digital N4",
     "#4F86C6",
-    "De punta a punta",
+    "Servicios del onboarding",
     [
      [
-      "Back de captura de datos y bienvenida",
-      "HU_N4_001 y 002",
-      "2026-10-05",
-      "2026-10-16"
+      "Integraciones base y geolocalización",
+      "Endpoint base, catálogos y consentimiento de INE",
+      "2026-10-26",
+      "2026-11-03"
      ],
      [
-      "Back de INE y confirmación de datos",
-      "HU_N4_004 y 005",
-      "2026-10-12",
-      "2026-10-23"
+      "Back de contacto, INE y domicilio",
+      "HU_N4_002, 005 y 008",
+      "2026-10-26",
+      "2026-11-13"
      ],
      [
-      "Domicilio y vulnerabilidad",
-      "HU_N4_008 y N4_10",
-      "2026-10-19",
-      "2026-10-23"
+      "Documentos y firma",
+      "HU0020",
+      "2026-11-02",
+      "2026-11-13"
+     ],
+     [
+      "Simulador de inversiones y dashboard",
+      "Hito 2",
+      "2026-11-02",
+      "2026-11-13"
      ]
     ]
    ],
    [
     "Rocket",
     "#E75301",
-    "Apertura para menores",
+    "Apertura y cuenta",
     [
      [
-      "Back de cuestionarios PLD",
-      "HU0031 a 0037",
-      "2026-10-05",
-      "2026-10-16"
+      "Home, accesos y “Mi Tripulación”",
+      "HU0043 a 0045",
+      "2026-10-26",
+      "2026-10-26"
      ],
      [
-      "Datos del adulto, domicilio y acta",
-      "HU0029, 0030, 0038 y 0040",
-      "2026-10-12",
-      "2026-10-23"
+      "Back de cuestionarios PLD y acta",
+      "HU0031 a 0038",
+      "2026-10-26",
+      "2026-11-13"
+     ],
+     [
+      "Datos de contacto y domicilio",
+      "HU0025, 0029 y 0030",
+      "2026-11-02",
+      "2026-11-13"
+     ]
+    ]
+   ],
+   [
+    "Consola Rocket",
+    "#7DACE3",
+    "Consola del menor",
+    [
+     [
+      "Activación con enlace o código",
+      "HU0046 y 0047",
+      "2026-11-02",
+      "2026-11-13"
+     ],
+     [
+      "Consola web en la nube",
+      "Temas Espacio y Océano",
+      "2026-11-02",
+      "2026-11-13"
      ]
     ]
    ],
@@ -856,16 +887,16 @@
     "QA",
     [
      [
-      "Ejecución de casos, sprints 2 a 4",
-      "Registro de hallazgos",
-      "2026-10-05",
-      "2026-10-16"
+      "Ejecución de casos de bienvenida, N4 y Home Rocket",
+      "24 casos ejecutados",
+      "2026-10-26",
+      "2026-10-30"
      ],
      [
-      "Reporte de cierre de pruebas",
-      "Planes S3 y S4",
-      "2026-10-19",
-      "2026-10-23"
+      "Pruebas de punta a punta en QA",
+      "Al habilitarse el ambiente",
+      "2026-11-02",
+      "2026-11-13"
      ]
     ]
    ],
@@ -877,14 +908,14 @@
      [
       "Ambiente de QA en GCP",
       "URLs, secretos y certificado SSL",
-      "2026-10-12",
-      "2026-10-16"
+      "2026-10-26",
+      "2026-11-06"
      ],
      [
-      "Mesa de trabajo de definiciones Rocket",
-      "Dudas y HUs posteriores al Home y al login",
-      "2026-10-12",
-      "2026-10-16"
+      "Respuestas a dudas de Rocket",
+      "Dudas del 30 sep, 7 y 13 oct",
+      "2026-10-26",
+      "2026-11-06"
      ]
     ]
    ],
@@ -894,48 +925,48 @@
     "PO y negocio",
     [
      [
-      "Inicio de sesión refinada",
-      "HU_AC_006 a 012",
-      "2026-10-05",
-      "2026-10-07"
+      "HUs nuevas de Rocket en ClickUp",
+      "Naves, misiones, movimientos y perfil",
+      "2026-10-26",
+      "2026-11-06"
      ],
      [
-      "Priorizar alcance del Sprint 4",
-      "Inicio de sesión, firma y contraseña de Rocket",
-      "2026-10-12",
-      "2026-10-23"
+      "Refinar HUs de la consola y la cuenta Rocket",
+      "Para el Sprint 5",
+      "2026-11-02",
+      "2026-11-16"
      ]
     ]
    ]
   ],
   "cierre": [
-   "2026-10-23",
-   "Cierre y Hito 1",
-   "Onboarding N4 de punta a punta · 23 oct"
+   "2026-11-13",
+   "Hito 2",
+   "Simulador y Consola Rocket · 13 nov"
   ],
   "hitos": [
    [
-    "5 oct 2026",
-    "Arranque del Sprint 3",
-    "Foco en el back de N4 y Rocket",
+    "26 oct 2026",
+    "Arranque del Sprint 2 Q4",
+    "Home de Rocket, accesos y “Mi Tripulación” completadas",
     "done"
    ],
    [
-    "13 oct 2026",
-    "Muestra ejecutiva",
-    "Onboarding N4",
-    ""
+    "29 oct 2026",
+    "Revisión del teléfono integrada",
+    "N4 y Rocket",
+    "done"
    ],
    [
-    "23 oct 2026",
-    "Cierre y Hito 1",
-    "Onboarding N4 de punta a punta",
+    "13 nov 2026",
+    "Hito 2",
+    "Simulador de inversiones y Consola Rocket",
     "key"
    ],
    [
-    "26 oct 2026",
-    "Arranque del Sprint 4",
-    "Simulador de inversiones y Consola Rocket",
+    "16 nov 2026",
+    "Arranque del Sprint 3 Q4",
+    "Aclaraciones con Salesforce y pruebas de carga",
     ""
    ]
   ]
@@ -1048,38 +1079,74 @@
    "20 – 21 ago",
    "Base",
    "Componentes de formulario, alertas y estilos compartidos"
+  ],
+  [
+   "2026-11-03",
+   "3 nov",
+   "N4 servicios",
+   "Endpoint base, geolocalización y consentimiento de INE integrados en N4; servicio de términos y condiciones integrado y ajustes visuales del Home"
+  ],
+  [
+   "2026-10-29",
+   "29 oct",
+   "N4 y Rocket",
+   "Revisión del teléfono en listas de riesgo integrada en N4 y en Rocket"
+  ],
+  [
+   "2026-10-26",
+   "26 oct",
+   "Rocket",
+   "HU0043 a HU0045 completadas: Home de la cuenta Rocket, generación de accesos a la consola y “Mi Tripulación”; geolocalización integrada en la apertura"
+  ],
+  [
+   "2026-10-25",
+   "25 oct",
+   "Calidad",
+   "18 casos de prueba ejecutados: 8 del Home de Rocket y 10 de bienvenida, contacto y código SMS de N4"
+  ],
+  [
+   "2026-10-23",
+   "22 – 23 oct",
+   "N4",
+   "Pantallas y avisos de validación en listas de control de N4; 6 casos de prueba de bienvenida ejecutados; mejora de identificadores de accesibilidad"
+  ],
+  [
+   "2026-10-20",
+   "20 oct",
+   "Servicios",
+   "Mapeo de integraciones, catálogo genérico, migración de tablas y certificado para el ambiente del banco; configuración de Incode para N4 y Rocket"
   ]
  ],
  "equipo": [
   [
    "Dev05",
    "Front y base de la app",
-   "Base de la app, onboarding; Rocket: cuestionarios PLD, firma (28–30 sep) y acta de nacimiento (14 oct); pantalla de carga unificada",
+   "Rocket: cuestionarios PLD, firma, acta de nacimiento; “Mi Tripulación” y detalle de cada menor (26 oct); términos y condiciones y ajustes del Home (3 nov)",
    "Rocket: documentación y firma (HU0040)"
   ],
   [
    "Dev02",
    "Front",
-   "Código SMS, contrato, contraseña y confirmación de N4 y Rocket (11 sep); pantallas de domicilio y datos de la INE",
-   "N4 datos de la INE (HU_N4_005) y domicilio (HU_N4_008); Rocket HU0029 y HU0030"
+   "Home de la cuenta Rocket y generación de accesos a la consola (26 oct); pantallas de domicilio y datos de la INE",
+   "N4 datos de contacto (HU_N4_002); Rocket datos de contacto (HU0025)"
   ],
   [
    "Dev04",
    "Servicios e integraciones",
-   "Sesión segura; Incode y lectura de la INE (1 oct); servicio de revisión del teléfono en listas de riesgo; nueva versión del SDK de Incode en Rocket (14 oct)",
-   "Back de Rocket y cuestionarios; integración con la revisión del teléfono; servicio Consubanco"
+   "Configuración de Incode para N4 y Rocket (20 oct); geolocalización en Rocket (26 oct); mapeo de integraciones de Rocket (3 nov)",
+   "Back de Rocket y cuestionarios; lectura de la INE con Incode"
   ],
   [
    "Dev03",
    "Servicios y contenidos",
-   "Contenidos administrables; envío y validación del código SMS; términos y condiciones (oct)",
-   "Mapeo de integraciones de N4; multimedia"
+   "Revisión del teléfono en listas de riesgo en N4 y Rocket (29 oct); mapeo de integraciones, catálogo genérico y certificado (20 oct)",
+   "Integraciones de N4 con el ambiente del banco"
   ],
   [
    "Dev01",
-   "Calidad (QA)",
-   "145 casos de prueba diseñados; primeros casos ejecutados en bienvenida",
-   "Casos de prueba de los sprints 2 y 3 listos para ejecutar en QA"
+   "Calidad (QA) y servicios",
+   "24 casos de prueba ejecutados (22–25 oct); endpoint base, geolocalización y consentimiento de INE en N4 (3 nov)",
+   "Servicios de Rocket; pruebas al habilitarse QA"
   ]
  ]
 }

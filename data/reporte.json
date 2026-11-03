@@ -82,13 +82,13 @@
    "titulo": "Ambiente de QA en la nube",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Los servicios de N4 y Rocket avanzan en el ambiente de desarrollo: esta semana se integraron el endpoint base, la geolocalización, el consentimiento de INE y la revisión del teléfono en listas de riesgo. Para pasarlos a pruebas se necesita que el equipo de Cloud habilite el ambiente de QA en GCP con sus URLs, secretos y certificado SSL. Con eso se confirma el Hito 1 y arrancan las pruebas automatizadas de punta a punta."
+   "texto": "El front de N4 y Rocket ya recorre el flujo completo con datos de prueba, y los servicios avanzan en desarrollo: esta semana se integraron el endpoint base, la geolocalización, el consentimiento de INE y la revisión del teléfono en listas de riesgo. El siguiente paso es conectar front y servicios en un ambiente estable del banco: el equipo de Cloud debe habilitar QA en GCP (URLs, secretos y certificado SSL) y el equipo de Juan David Agudelo, confirmar la disponibilidad de los servicios para pruebas. Con eso se confirma el Hito 1 y arrancan las pruebas de punta a punta rumbo a la meta del 15 de noviembre."
   },
   {
    "titulo": "Definiciones de Rocket",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Buen avance: ya están capturadas en ClickUp las HUs de naves de ahorro, misiones, movimientos, detalle de cuenta, perfil y notificaciones de la app y la consola. El siguiente paso es refinarlas y responder las dudas enviadas el 30 de septiembre, 7 y 13 de octubre. Ikitech estima un ajuste de 1 a 1.5 sprints si estas definiciones no se cierran a tiempo."
+   "texto": "Buen avance: ya están en ClickUp las HUs de naves de ahorro, misiones, movimientos, detalle de cuenta, perfil y notificaciones, y el grooming del 29 de octubre dejó identificadas las definiciones por cerrar: cómo entra y sale el dinero de la cuenta del menor cuando el tutor no tiene N4, el RFC y régimen fiscal a capturar, los límites de cuentas por tutor y de naves, las reglas de validación del acta de nacimiento y el cuestionario KYC propio de Rocket. Ikitech estima un ajuste de 1 a 1.5 sprints si estas definiciones no se cierran a tiempo."
   },
   {
    "titulo": "Front listo, back en marcha",
@@ -100,7 +100,7 @@
    "titulo": "Actualización de Incode",
    "estado": "curso",
    "etiqueta": "En marcha",
-   "texto": "Ya está la configuración de Incode para los flujos de N4 y Rocket (20 de octubre). La integración va al 80% en N4 y al 90% en Rocket, donde falta validar las reglas de parentesco y el acta de nacimiento."
+   "texto": "La lectura de la INE y la selfie con Incode ya están integradas (29 de octubre), con la configuración para N4 y Rocket lista desde el 20 de octubre. El siguiente paso es la lectura del acta de nacimiento: se revisa con el equipo de Juan David Agudelo y, en paralelo, se prepara una alternativa técnica. La integración va al 80% en N4 y al 90% en Rocket."
   },
   {
    "titulo": "Rocket suma HUs completadas",

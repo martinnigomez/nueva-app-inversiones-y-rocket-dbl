@@ -2,7 +2,7 @@
 
 Reporte ejecutivo del avance de la Nueva App Inversiones: Cuenta Digital N4 y Rocket, desarrollada con Ikitech.
 
-**Link público:** https://mnieto-consubanco.github.io/nueva-app-inversiones-y-rocket/
+**Link público:** https://martinnigomez.github.io/nueva-app-inversiones-y-rocket-dbl/
 
 El reporte se actualiza **cada jueves a las 23:59 (CDMX)** con tres fuentes:
 

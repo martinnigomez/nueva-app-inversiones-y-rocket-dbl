@@ -2,9 +2,9 @@
 
 Este documento es la guía que sigue Claude cada jueves a las 23:59 (hora de la Ciudad de México) para actualizar el reporte. También sirve para hacerlo a mano.
 
-- **Link público:** https://mnieto-consubanco.github.io/nueva-app-inversiones-y-rocket/
+- **Link público:** https://martinnigomez.github.io/nueva-app-inversiones-y-rocket-dbl/
 - **Responsable (PO):** Martín Nieto
-- **Repositorio:** `mnieto-consubanco/nueva-app-inversiones-y-rocket`
+- **Repositorio:** `martinnigomez/nueva-app-inversiones-y-rocket-dbl`
 
 ## Fuentes
 

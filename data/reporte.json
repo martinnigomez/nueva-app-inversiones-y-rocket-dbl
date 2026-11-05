@@ -1,7 +1,7 @@
 {
  "meta": {
   "corte_ikitech": "2026-10-19",
-  "corte_clickup": "2026-11-03",
+  "corte_clickup": "2026-11-05",
   "fin_desarrollo": "2026-12-25",
   "sprint": {
    "nombre": "Sprint 2 Q4",
@@ -103,10 +103,10 @@
    "texto": "La lectura de la INE y la selfie con Incode ya están integradas (29 de octubre), con la configuración para N4 y Rocket lista desde el 20 de octubre. El siguiente paso es la lectura del acta de nacimiento: se revisa con el equipo de Juan David Agudelo y, en paralelo, se prepara una alternativa técnica. La integración va al 80% en N4 y al 90% en Rocket."
   },
   {
-   "titulo": "Rocket suma HUs completadas",
+   "titulo": "Más HUs completadas",
    "estado": "hecho",
    "etiqueta": "Listo",
-   "texto": "El 26 de octubre se completaron el Home de la cuenta Rocket, la generación de accesos a la consola desde la app y “Mi Tripulación” (HU0043 a 0045). La activación de la cuenta del menor con enlace o código ya está en desarrollo."
+   "texto": "El 26 de octubre se completaron el Home de la cuenta Rocket, la generación de accesos a la consola y “Mi Tripulación” (HU0043 a 0045), y el 3 de noviembre la captura de datos de contacto de N4 (HU_N4_002). En la consola del menor ya están en desarrollo la activación con enlace o código, el inicio de sesión, la pantalla de carga y el Home."
   }
  ],
  "proyectos": [
@@ -812,14 +812,14 @@
     "Servicios del onboarding",
     [
      [
-      "Integraciones base y geolocalización",
-      "Endpoint base, catálogos y consentimiento de INE",
+      "Integraciones base",
+      "RENAPO, Core ICBS, CRM y geolocalización",
       "2026-10-26",
       "2026-11-03"
      ],
      [
       "Back de contacto, INE y domicilio",
-      "HU_N4_002, 005 y 008",
+      "HU_N4_002 lista (3 nov); 005 y 008 en curso",
       "2026-10-26",
       "2026-11-13"
      ],
@@ -871,6 +871,12 @@
       "Activación con enlace o código",
       "HU0046 y 0047",
       "2026-11-02",
+      "2026-11-13"
+     ],
+     [
+      "Inicio de sesión, pantalla de carga y Home",
+      "HU0048, 0091 y 0092",
+      "2026-11-03",
       "2026-11-13"
      ],
      [
@@ -1084,7 +1090,7 @@
    "2026-11-03",
    "3 nov",
    "N4 servicios",
-   "Endpoint base, geolocalización y consentimiento de INE integrados en N4; servicio de términos y condiciones integrado y ajustes visuales del Home"
+   "HU_N4_002 completada. N4 integrado con RENAPO (CURP), Core ICBS (sin cuentas duplicadas) y CRM (cliente y domicilio); geolocalización, consentimiento de INE y términos y condiciones"
   ],
   [
    "2026-10-29",
@@ -1115,6 +1121,12 @@
    "20 oct",
    "Servicios",
    "Mapeo de integraciones, catálogo genérico, migración de tablas y certificado para el ambiente del banco; configuración de Incode para N4 y Rocket"
+  ],
+  [
+   "2026-11-03",
+   "3 nov",
+   "Rocket",
+   "Rocket: servicios del código SMS y de datos de contacto integrados; front del código de confirmación terminado"
   ]
  ],
  "equipo": [

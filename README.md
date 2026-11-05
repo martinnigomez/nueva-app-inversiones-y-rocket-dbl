@@ -4,11 +4,12 @@ Reporte ejecutivo del avance de la Nueva App Inversiones: Cuenta Digital N4 y Ro
 
 **Link público:** https://martinnigomez.github.io/nueva-app-inversiones-y-rocket-dbl/
 
-El reporte se actualiza **cada jueves a las 23:59 (CDMX)** con tres fuentes:
+El reporte se actualiza **cada jueves a las 23:59 (CDMX)** con cuatro fuentes:
 
 1. **ClickUp** (espacio CSB-Ikitech): etapa de cada HU y avance de front y back.
 2. **Hoja "Layout _Épicas y HU"**: alcance completo de épicas y HUs.
 3. **Master Gantt de Ikitech**: el archivo `consubanco_project_gantt_roadmap.xlsx` en Google Drive, que se lee en línea con el conector de Drive. Los archivos de origen nunca se guardan en este repositorio público.
+4. **Registro de riesgos** (Google Drive): solo para dar contexto a los puntos de atención; los temas de seguridad y regulatorios nunca se publican.
 
 ## Archivo de Ikitech en Google Drive
 

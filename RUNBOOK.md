@@ -13,6 +13,7 @@ Este documento es la guía que sigue Claude cada jueves a las 23:59 (hora de la 
 | ClickUp | Espacio **CSB-Ikitech** (id `90146380570`) | Etapa de cada HU, avance front/back por subtareas, entregas recientes, quién trabaja en qué |
 | Hoja de épicas "Layout _Épicas y HU" | Google Sheets, id en `data/reporte.json` → `meta.hoja_epicas_id` | HUs del alcance que aún no existen en ClickUp (backlog) y nombres de épicas |
 | Master Gantt de Ikitech | Google Drive, archivo `consubanco_project_gantt_roadmap.xlsx` (fileId `1f0aMSS-JAf1Lst2H9VL68gUPf8-7KKgQ`). Ikitech lo actualiza en el mismo archivo. Nunca lo copies al repositorio público | Avance real por proyecto y componente, roadmap de 21 semanas, sprints, hitos, habilitadores del banco y alertas |
+| Registro de riesgos ("Matris de Riesgos_Avances_Plataformas") | Google Drive, fileId `1dz-XO0HHDgLIEV8HsWyXQdxLIC30WpR0` (también en `meta.registro_riesgos_id`) | Contexto para los puntos de atención: avances en Incode, ambiente de QA y definiciones pendientes de Rocket |
 
 Listas de producto en ClickUp (las únicas que cuentan como HUs):
 
@@ -88,6 +89,14 @@ Lee el archivo con el conector de **Google Drive**:
 - Revisa `hitos_plan` y `rail.hitos` contra el archivo.
 
 Si encuentras inconsistencias dentro del archivo de Ikitech (totales que no cuadran con los pesos, dos fechas para un mismo hito), **no** las pongas en el reporte. Repórtalas a Martín en el resumen final.
+
+## Paso 3b. Registro de riesgos → textos de `alertas`
+
+Descarga el archivo con `download_file_content` (fileId en `meta.registro_riesgos_id`), decodifícalo **fuera** del repositorio y léelo con openpyxl (pestaña "Registro de riesgos": columnas Riesgo, Estatus y Bitácora). Úsalo **solo** para enriquecer los textos de las alertas existentes (Incode, ambiente de QA, definiciones de Rocket): qué se resolvió y qué sigue por cerrar.
+
+- **Nunca** publiques riesgos de seguridad (cifrado, credenciales, validaciones de identidad, parámetros de prueba), regulatorios, niveles de severidad, nombres de quien reportó ni comentarios internos de demos o reuniones. El reporte es público.
+- No agregues una sección de riesgos; solo ajusta los textos existentes, con tono positivo.
+- Reporta a Martín, en el resumen final, los pendientes a su nombre y los cambios de estatus.
 
 ## Paso 4. Entregado y equipo
 

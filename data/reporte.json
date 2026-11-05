@@ -15,7 +15,8 @@
    "semanas": 21,
    "semana_actual": "W14 (2 al 6 de noviembre)"
   },
-  "hoja_epicas_id": "1ppmnxwuSuAYu_wVHufkso09R5B5U84FxH-aPxkdUc1Q"
+  "hoja_epicas_id": "1ppmnxwuSuAYu_wVHufkso09R5B5U84FxH-aPxkdUc1Q",
+  "registro_riesgos_id": "1dz-XO0HHDgLIEV8HsWyXQdxLIC30WpR0"
  },
  "hero": {
   "titulo": "Cuenta Digital N4 y Rocket",
@@ -88,7 +89,7 @@
    "titulo": "Definiciones de Rocket",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Buen avance: ya están en ClickUp las HUs de naves de ahorro, misiones, movimientos, detalle de cuenta, perfil y notificaciones, y el grooming del 29 de octubre dejó identificadas las definiciones por cerrar: cómo entra y sale el dinero de la cuenta del menor cuando el tutor no tiene N4, el RFC y régimen fiscal a capturar, los límites de cuentas por tutor y de naves, las reglas de validación del acta de nacimiento y el cuestionario KYC propio de Rocket. Ikitech estima un ajuste de 1 a 1.5 sprints si estas definiciones no se cierran a tiempo."
+   "texto": "Buen avance: ya están en ClickUp las HUs de naves de ahorro, misiones, movimientos, detalle de cuenta, perfil y notificaciones, y ya quedaron definidos los límites de cuentas por tutor y de naves. El cuestionario KYC propio de Rocket se está trabajando (grooming del 3 de noviembre). Siguen por cerrar: cómo entra y sale el dinero de la cuenta del menor cuando el tutor no tiene N4, el RFC y régimen fiscal a capturar y las reglas de validación del acta de nacimiento. Ikitech estima un ajuste de 1 a 1.5 sprints si estas definiciones no se cierran a tiempo."
   },
   {
    "titulo": "Front listo, back en marcha",

@@ -94,6 +94,18 @@
    "texto": "Buen avance en el seguimiento de pendientes con negocio y TI: de 52 pendientes registrados, 34 ya están cerrados o entregados. Ya quedaron definidas las transferencias desde la cuenta Rocket, la contraseña de acceso, los límites por tutor y las reglas de tareas y misiones, y el banco entregó los servicios de simulación y contratación de inversiones y de apartados de ahorro. Siguen en curso: las HUs de transferencias (grooming del 18 de noviembre), el cuestionario KYC con el área de PLD, la creación del producto Rocket en el core, la validación del RFC del menor, el proveedor para el acta de nacimiento y los formatos de contrato y expediente."
   },
   {
+   "titulo": "Fechas de Rocket tentativas",
+   "estado": "curso",
+   "etiqueta": "En ajuste",
+   "texto": "El alcance de Rocket se amplió con transferencias, que no estaban contempladas al inicio del proyecto. Por eso las fechas de Rocket en el roadmap son tentativas: los pendientes de la apertura del tutor y de la consola del menor pasaron al cierre del Sprint 3 Q4 (7 de diciembre), y la planeación se ajustará cuando queden refinadas las HUs de transferencias."
+  },
+  {
+   "titulo": "HUs del Home de inversiones",
+   "estado": "curso",
+   "etiqueta": "Siguiente paso",
+   "texto": "Ya se tienen 23 HUs del Home de inversiones por refinar. Se revisarán la próxima semana (23 al 27 de noviembre) para que queden listas para desarrollo."
+  },
+  {
    "titulo": "Front listo, back en marcha",
    "estado": "curso",
    "etiqueta": "Foco del sprint",

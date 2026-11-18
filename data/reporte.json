@@ -1,7 +1,7 @@
 {
  "meta": {
   "corte_ikitech": "2026-11-10",
-  "corte_clickup": "2026-11-17",
+  "corte_clickup": "2026-11-18",
   "fin_desarrollo": "2026-12-25",
   "sprint": {
    "nombre": "Sprint 3 Q4",
@@ -16,7 +16,9 @@
    "semana_actual": "W16 (16 al 20 de noviembre)"
   },
   "hoja_epicas_id": "1ppmnxwuSuAYu_wVHufkso09R5B5U84FxH-aPxkdUc1Q",
-  "registro_riesgos_id": "1dz-XO0HHDgLIEV8HsWyXQdxLIC30WpR0"
+  "registro_riesgos_id": "1dz-XO0HHDgLIEV8HsWyXQdxLIC30WpR0",
+  "seguimiento_pendientes_id": "1l6sksDINVmt9QrNMBWtDe6Hf7xiBl7Fx",
+  "seguimiento_pendientes_html_id": "1fgXJDQ4Yvtw13bOjB9xhZRJDgk85qfo_"
  },
  "hero": {
   "titulo": "Cuenta Digital N4 y Rocket",
@@ -83,13 +85,13 @@
    "titulo": "Ambiente de pruebas",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Buen avance: el 10 de noviembre quedaron levantados los ambientes, el 12 se integró el inicio de sesión real con geolocalización y el 13 se entregó el código al ambiente del banco. QA ya ejecutó con éxito los casos de bienvenida, contacto y código SMS de N4. El siguiente paso es contar con los servicios del banco estables en el ambiente de pruebas para las pruebas de punta a punta antes del 7 de diciembre."
+   "texto": "Buen avance: el 10 de noviembre quedaron levantados los ambientes, el 12 se integró el inicio de sesión real con geolocalización y el 13 se entregó el código al ambiente del banco. Al 18 de noviembre el banco ya entregó los servicios y credenciales de las operaciones nuevas, y QA ejecutó con éxito los casos de bienvenida, contacto y código SMS de N4. El siguiente paso es estabilizar el ambiente de pruebas para las pruebas de punta a punta antes del 7 de diciembre."
   },
   {
    "titulo": "Definiciones de Rocket",
    "estado": "dep",
    "etiqueta": "Requiere atención",
-   "texto": "Ya están en ClickUp las HUs de apartados de ahorro, misiones, tareas, movimientos, perfil, notificaciones y la regla de creación de cuentas, y quedaron definidos los límites por tutor. El siguiente paso es refinarlas para el Sprint 3 Q4. Siguen por cerrar: cómo entra y sale el dinero de la cuenta del menor cuando el tutor no tiene N4, el RFC y régimen fiscal y las reglas del acta de nacimiento."
+   "texto": "Buen avance en el seguimiento de pendientes con negocio y TI: de 52 pendientes registrados, 34 ya están cerrados o entregados. Ya quedaron definidas las transferencias desde la cuenta Rocket, la contraseña de acceso, los límites por tutor y las reglas de tareas y misiones, y el banco entregó los servicios de simulación y contratación de inversiones y de apartados de ahorro. Siguen en curso: las HUs de transferencias (grooming del 18 de noviembre), el cuestionario KYC con el área de PLD, la creación del producto Rocket en el core, la validación del RFC del menor, el proveedor para el acta de nacimiento y los formatos de contrato y expediente."
   },
   {
    "titulo": "Front listo, back en marcha",
@@ -228,8 +230,8 @@
    "En desarrollo",
    "curso",
    "#4F86C6",
-   "Servicios para la apertura y el enrolamiento desde cero. Ya se entregaron las credenciales del ambiente de desarrollo y se preparó la entrega del código para el ambiente del banco (20 oct).",
-   "Publicar las APIs en el ambiente de QA."
+   "El banco ya entregó los servicios de ambientes y credenciales, simulación y contratación de inversiones, apartados de ahorro y evidencia de INE (18 nov).",
+   "Validar en el ambiente de pruebas cada operación entregada."
   ],
   [
    "CSB-DEP-02",
@@ -239,8 +241,8 @@
    "Requiere atención",
    "dep",
    "#E75301",
-   "Ya se capturaron en ClickUp las HUs de naves, misiones, movimientos y perfil. Faltan las respuestas a las dudas del 30 de septiembre, 7 y 13 de octubre.",
-   "Refinar con Ikitech las HUs nuevas de Rocket."
+   "34 de 52 pendientes de seguimiento cerrados o entregados. En curso: HUs de transferencias, cuestionario KYC, producto Rocket en el core, RFC del menor, acta de nacimiento y formatos de contrato.",
+   "Refinar las HUs de transferencias y cerrar el cuestionario KYC con PLD."
   ],
   [
    "CSB-DEP-03",
@@ -857,7 +859,7 @@
     [
      [
       "Home de la consola",
-      "HU0092 en revisión",
+      "HU0075 en revisión",
       "2026-11-16",
       "2026-11-20"
      ],
@@ -1121,6 +1123,12 @@
    "13 nov",
    "N4 y Rocket",
    "Cierre del Sprint 2 Q4: 13 HUs completadas, entre ellas INE, CURP, biometría, domicilio y datos fiscales de N4, y datos del adulto, domicilio y contraseña de Rocket; código entregado al ambiente del banco"
+  ],
+  [
+   "2026-11-18",
+   "18 nov",
+   "Servicios",
+   "El banco entregó los servicios de simulación y contratación de inversiones, apartados de ahorro, ambientes y credenciales; definidas las reglas de tareas y misiones de Rocket"
   ]
  ],
  "equipo": [

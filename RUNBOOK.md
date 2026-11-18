@@ -14,6 +14,7 @@ Este documento es la guía que sigue Claude cada jueves a las 23:59 (hora de la 
 | Hoja de épicas "Layout _Épicas y HU" | Google Sheets, id en `data/reporte.json` → `meta.hoja_epicas_id` | HUs del alcance que aún no existen en ClickUp (backlog) y nombres de épicas |
 | Master Gantt de Ikitech | Google Drive, archivo `consubanco_project_gantt_roadmap.xlsx` (fileId `1f0aMSS-JAf1Lst2H9VL68gUPf8-7KKgQ`). Ikitech lo actualiza en el mismo archivo. Nunca lo copies al repositorio público | Avance real por proyecto y componente, roadmap de 21 semanas, sprints, hitos, habilitadores del banco y alertas |
 | Registro de riesgos ("Matris de Riesgos_Avances_Plataformas") | Google Drive, fileId `1dz-XO0HHDgLIEV8HsWyXQdxLIC30WpR0` (también en `meta.registro_riesgos_id`) | Contexto para los puntos de atención: avances en Incode, ambiente de QA y definiciones pendientes de Rocket |
+| Seguimiento de pendientes (Excel "Seguimiento de pendientes") | Google Drive, fileId `1l6sksDINVmt9QrNMBWtDe6Hf7xiBl7Fx` (`meta.seguimiento_pendientes_id`). Hay un resumen en HTML por corte, por ejemplo `1fgXJDQ4Yvtw13bOjB9xhZRJDgk85qfo_` ("Seguimiento de pendientes Rocket al 14-nov") | Pendientes de negocio, TI y proveedor (DEP-xx): qué se cerró, qué sigue en curso y con qué fecha |
 
 Listas de producto en ClickUp (las únicas que cuentan como HUs):
 
@@ -97,6 +98,15 @@ Descarga el archivo con `download_file_content` (fileId en `meta.registro_riesgo
 - **Nunca** publiques riesgos de seguridad (cifrado, credenciales, validaciones de identidad, parámetros de prueba), regulatorios, niveles de severidad, nombres de quien reportó ni comentarios internos de demos o reuniones. El reporte es público.
 - No agregues una sección de riesgos; solo ajusta los textos existentes, con tono positivo.
 - Reporta a Martín, en el resumen final, los pendientes a su nombre y los cambios de estatus.
+
+## Paso 3c. Seguimiento de pendientes → textos de `alertas` y `deps`
+
+Descarga el Excel (fileId en `meta.seguimiento_pendientes_id`), decodifícalo **fuera** del repositorio y lee la pestaña "Pendientes" (columnas Tarea, Área, Responsable, Estatus, F. Compromiso y Actualizaciones) y "Avances diarios". Si el usuario comparte un HTML de corte más reciente, úsalo como referencia del mismo seguimiento.
+
+- Cuenta cuántos pendientes hay y cuántos están cerrados o entregados, y usa esa cifra en la alerta "Definiciones de Rocket" y en `deps` (CSB-DEP-02).
+- Menciona solo el tema de lo cerrado y lo que sigue en curso, con lenguaje de negocio (por ejemplo, "cuestionario KYC con PLD").
+- **Nunca** publiques nombres de servicios, buckets, proyectos de nube, llaves, tokens, herramientas internas, desviaciones en días ni nombres de responsables. El reporte es público.
+- Reporta a Martín, en el resumen final, los pendientes a su nombre y los vencidos.
 
 ## Paso 4. Entregado y equipo
 
